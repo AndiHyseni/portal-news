@@ -1,0 +1,32 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 100px 10px 100px;
+  align-items: center;
+  height: 50px;
+  background-color: #26145c;
+}
+
+a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+}
+
+.navbarItem {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.loginNavbar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+h1 {
+  color: white;
+  font-size: 15px;
+}
