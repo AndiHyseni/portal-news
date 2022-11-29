@@ -1,6 +1,7 @@
 import { Carousel } from "@mantine/carousel";
 import { Image } from "@mantine/core";
 import { Fragment } from "react";
+import { NEWS } from "../../enums/news/url";
 import { News } from "../../types/news/news";
 import "./HomepageNews.css";
 
@@ -9,26 +10,22 @@ export interface NewsProps {
 }
 
 export const HomepageNews: React.FC<NewsProps> = ({ homenews }) => {
-  console.log("news", homenews);
-
   return (
     <div>
       <>
-        {homenews.map((news, index) => (
-          <Fragment key={index}>
-            <Carousel
-              sx={{ maxWidth: 320 }}
-              mx="auto"
-              withIndicators
-              height={500}
-            >
+        <Carousel sx={{ maxWidth: 1500 }} mx="auto" withIndicators>
+          {homenews.map((news, index) => (
+            <Fragment key={index}>
               <Carousel.Slide>
                 <Image src={news.image} />
+                <div className="shadow">
+                  <h1 className="title">{news.title}</h1>
+                  <p className="subtitle">{news.subTitle}</p>
+                </div>
               </Carousel.Slide>
-            </Carousel>
-            <h1>{news.title}</h1>
-          </Fragment>
-        ))}
+            </Fragment>
+          ))}
+        </Carousel>
       </>
     </div>
   );

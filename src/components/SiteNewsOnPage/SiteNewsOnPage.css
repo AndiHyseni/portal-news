@@ -1,0 +1,41 @@
+.sitepage {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.fokus {
+  font-size: 20px;
+  color: black;
+}
+
+.sitediv {
+  display: flex;
+  width: 60%;
+  background-color: white;
+  border: 1px solid #dee2e6;
+}
+
+.site {
+  display: flex;
+  flex-direction: column;
+}
+
+.sitetitle {
+  font-size: 16px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.sitep {
+  color: red;
+  padding-left: 10px;
+}
+
+.siteimage {
+  width: 270px !important;
+  height: 156px;
+  flex: 0 0 auto;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+}
