@@ -10,3 +10,10 @@ export const getNews = async (): Promise<News[]> => {
   );
   return data;
 };
+
+export const getNewsId = async (newsId: number): Promise<News[]> => {
+  const { data } = await axiosInstance.get(
+    `${BaseUrl.DEVELOPMENT}/${NEWS.GET_NEWSID}/${newsId}`
+  );
+  return data;
+};

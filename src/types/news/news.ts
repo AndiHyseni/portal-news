@@ -1,4 +1,5 @@
 export interface News {
+  newsId: number;
   category: number;
   categoryId: number;
   content: string;

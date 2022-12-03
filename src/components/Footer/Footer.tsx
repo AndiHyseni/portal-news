@@ -7,7 +7,9 @@ export const Footer: React.FC = () => {
     <div className="footer">
       <div style={{ display: "flex" }}>
         <div className="column1">
-          <Image src="../images/PN.png" height={100} width={100} />
+          <Link className="footerImage" to="/">
+            <Image src="../images/PN.png" height={100} width={100} />
+          </Link>
           <p>
             Ky portal mirëmbahet nga kompania "Portal News". Materialet dhe
             informacionet në këtë portal nuk mund të kopjohen, të shtypen, ose
