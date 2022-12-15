@@ -28,7 +28,7 @@ export const Homepage: React.FC = () => {
           </Container>
         )}
         {userContext.userRole?.includes(Role.ADMIN) && (
-          <div className="homepage">
+          <div className="homepageadmin">
             {raportData && <Administration raport={raportData} />}
           </div>
         )}

@@ -10,7 +10,7 @@ axiosInstance.interceptors.request.use((request) => {
   request.headers.Accept = "application/json";
 
   // Attach token to request if available
-  const jwtToken = localStorage.getItem("authToken");
+  const jwtToken = localStorage.getItem("jwt");
   if (jwtToken) {
     request.headers.Authorization = `Bearer ${jwtToken}`;
   }
@@ -26,7 +26,7 @@ axiosInstance.interceptors.request.use((request) => {
 // if request succeeds with status code 1001 throw error
 axiosInstance.interceptors.response.use((response) => {
   if (response.data.code === 1001) {
-    localStorage.removeItem("authToken");
+    localStorage.removeItem("jwt");
     window.location.reload();
   }
 

@@ -1,7 +1,7 @@
-import { Image } from "@mantine/core";
+import { Button, Image } from "@mantine/core";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { User, UserPlus } from "tabler-icons-react";
+import { Logout, User, UserPlus } from "tabler-icons-react";
 import { UserContext } from "../../contexes/UserContext";
 import { Role } from "../../types/auth/login";
 import "../Navbar/Navbar.css";
@@ -9,7 +9,7 @@ import "../Navbar/Navbar.css";
 export const Navbar = () => {
   const [userContext] = useContext(UserContext);
   const logout = () => {
-    localStorage.removeItem("authToken");
+    localStorage.removeItem("jwt");
     window.location.reload();
   };
 
@@ -34,8 +34,16 @@ export const Navbar = () => {
       )}
       {userContext.token && (
         <div className="loginNavbar">
-          <h1>{userContext.username}</h1>
-          <h1 onClick={logout}>Logout</h1>
+          <h1 className="username">{userContext.username}</h1>
+          <Button onClick={logout}>
+            <Logout
+              className="logoutbutton"
+              size={20}
+              strokeWidth={2}
+              color={"white"}
+            />{" "}
+            <h1>Logout</h1>
+          </Button>
         </div>
       )}
       {!userContext.token && (

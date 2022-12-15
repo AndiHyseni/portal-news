@@ -1,0 +1,33 @@
+.sidebarButton {
+  position: absolute;
+  margin-left: 189px;
+  color: white;
+}
+
+.sidebarContent {
+  width: 100%;
+  margin: 60px auto 0 0;
+  color: white;
+}
+
+.sidebarButtonClosed {
+  position: absolute;
+  margin-top: -54px;
+}
+
+.sidebarList {
+  list-style: none;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+ul {
+  padding-bottom: 20px;
+  padding-left: 30px;
+}
+
+.sidebarItems {
+  font-size: 23px;
+  padding-left: 6px;
+}

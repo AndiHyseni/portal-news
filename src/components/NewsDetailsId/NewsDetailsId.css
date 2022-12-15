@@ -1,0 +1,43 @@
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px 100px 10px 100px;
+  align-items: center;
+  background-color: white;
+}
+
+.titleDetails {
+  color: black;
+  font-size: 29px;
+  text-align: center;
+}
+
+.subtitleDetails {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.contentDetails {
+  text-align: justify;
+  font-size: 15px;
+}
+
+.tagsDetails {
+  width: 100%;
+}
+
+.tagsButton {
+  background-color: black;
+  margin-right: 20px;
+}
+
+.tagsButton:hover {
+  background-color: #26145c;
+}
+
+.videoDetails {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}

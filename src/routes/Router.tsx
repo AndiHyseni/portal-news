@@ -1,10 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { LoginPage } from "../components/Login/LoginPage";
 import { RegisterPage } from "../components/Register/RegisterPage";
+import { AddNewsPage } from "../pages/AdminNews/AddNewsPage";
+import { AdminNews } from "../pages/AdminNews/AdminNews";
 import { Homepage } from "../pages/Homepage/Homepage";
-import { Login } from "../pages/Login/Login";
 import { NewsDetails } from "../pages/NewsDetails/NewsDetails";
-import { Register } from "../pages/Register/Register";
+import { ErrorPage } from "./ErrorPage";
+import { ProtectedRoute } from "./ProtectedRoute";
 
 export const Router: React.FC = () => {
   return (
@@ -14,6 +16,9 @@ export const Router: React.FC = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/news/:newsId" element={<NewsDetails />} />
+        <Route path="/denied" element={<ErrorPage />} />
+        <Route path="/news" element={<AdminNews />} />
+        <Route path="/news/add" element={<AddNewsPage />} />
       </Routes>
     </BrowserRouter>
   );

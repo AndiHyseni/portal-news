@@ -18,3 +18,25 @@ code {
   margin-left: 10%;
   margin-right: 10%;
 }
+
+thead {
+  font-family: Montserrat;
+  background-color: #e3e1ea;
+}
+
+th {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  color: #26145ccc !important;
+}
+
+tbody {
+  font-family: Montserrat;
+}
+
+td {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  color: #26145ccc !important;
+  border: 1px solid #9289ad !important;
+}
