@@ -3,32 +3,34 @@ import {
   Button,
   Card,
   Group,
-  Image,
   Select,
   Switch,
   Textarea,
   TextInput,
+  Image,
 } from "@mantine/core";
-import { useForm } from "@mantine/form";
-import { AxiosError } from "axios";
-import { useNavigate } from "react-router-dom";
 import { DatePicker } from "@mantine/dates";
+import { useForm } from "@mantine/form";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Label } from "semantic-ui-react";
 import { useCategories } from "../../hooks/useCategories/useCategories";
 import { Categories } from "../../types/categories/categories";
-import { useState } from "react";
-import { ApiError, ErrorMessage } from "../../types/auth/ApiError";
-import { useCreateNews } from "../../hooks/useCreateNews/useCreateNews";
-import "../Forms/NewsForms.css";
-import React from "react";
-import { Label } from "semantic-ui-react";
+import { News } from "../../types/news/news";
 
 export interface NewsFormProps {
   newsId: number;
+  news: News;
+  mutation: any;
 }
 
-export const NewsForms: React.FC<NewsFormProps> = (newsId) => {
+export const EditNewsForm: React.FC<NewsFormProps> = ({
+  newsId,
+  news,
+  mutation,
+}) => {
   const navigate = useNavigate();
-  const createNewsMutation = useCreateNews();
+  //   const createNewsMutation = useCreateNews();
   const [isFeatured, setIsFeatured] = useState<boolean>(false);
   const [isDeleted, setIsDeleted] = useState<boolean>(false);
 
@@ -45,17 +47,17 @@ export const NewsForms: React.FC<NewsFormProps> = (newsId) => {
 
   const form = useForm({
     initialValues: {
-      newsId: 0,
-      categoryId: 0,
-      content: "",
-      expireDate: "",
-      image: "",
-      isDeleted: false,
-      isFeatured: false,
-      subTitle: "",
-      tags: "",
-      title: "",
-      video: "",
+      newsId: newsId,
+      categoryId: news.categoryId,
+      content: news.content,
+      expireDate: news.expireDate,
+      image: news.image,
+      isDeleted: news.isDeleted ? true : false,
+      isFeatured: news.isFeatured ? true : false,
+      subTitle: news.subTitle,
+      tags: news.tags,
+      title: news.title,
+      video: news.video,
     },
   });
 
@@ -86,10 +88,11 @@ export const NewsForms: React.FC<NewsFormProps> = (newsId) => {
   const handleSubmit = (News: any) => {
     News.image = image;
     News.tags = tags.join(",");
-    createNewsMutation.mutate(
+    mutation.mutate(
       {
         ...form.values,
-        newsId: +form.values.newsId,
+        payload: { ...form.values },
+        newsId: news.newsId,
         categoryId: categoryId ? Number(categoryId) : 0,
         isDeleted: form.values.isDeleted === true ? true : false,
         isFeatured: form.values.isFeatured === true ? true : false,

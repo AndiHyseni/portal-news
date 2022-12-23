@@ -1,7 +1,10 @@
 import { BaseUrl } from "../../enums/baseUrl";
-import { CREATE_NEWS, NEWS } from "../../enums/news/url";
-import { ApiResponse } from "../../types/api/ApiResponse";
-import { CreateNewsPayload, News } from "../../types/news/news";
+import { CREATE_NEWS, NEWS, SAVED_NEWS } from "../../enums/news/url";
+import {
+  CreateNewsPayload,
+  News,
+  SavedNewsPayload,
+} from "../../types/news/news";
 import { axiosInstance } from "../config";
 
 export const getNews = async (): Promise<News[]> => {
@@ -23,6 +26,21 @@ export const createNews = async (
 ): Promise<number> => {
   const { data } = await axiosInstance.post(
     `${BaseUrl.DEVELOPMENT}/${CREATE_NEWS.CREATE_NEWS}`,
+    payload
+  );
+  return data;
+};
+
+export const deleteNews = async (newsId: number): Promise<void> => {
+  const { data } = await axiosInstance.delete(
+    `${BaseUrl.DEVELOPMENT}/${NEWS.GET_NEWSID}/${newsId}`
+  );
+  return data;
+};
+
+export const savedNews = async (payload: SavedNewsPayload): Promise<number> => {
+  const { data } = await axiosInstance.post(
+    `${BaseUrl.DEVELOPMENT}/${SAVED_NEWS.SAVED_NEWS}`,
     payload
   );
   return data;

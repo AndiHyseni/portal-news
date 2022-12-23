@@ -1,4 +1,5 @@
 import { Button, Table } from "@mantine/core";
+import { Link } from "react-router-dom";
 import { News } from "../../types/news/news";
 
 export interface TableProps {
@@ -32,7 +33,9 @@ export const NewsTable: React.FC<TableProps> = ({ newses }) => {
             <td>{news.categoryId}</td>
             <td>{news.title}</td>
             <td>
-              <Button>Details</Button>
+              <Button component={Link} to={`/news/details/${news.newsId}`}>
+                Details
+              </Button>
             </td>
           </tr>
         ))}

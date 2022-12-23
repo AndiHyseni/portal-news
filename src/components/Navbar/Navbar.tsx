@@ -16,7 +16,7 @@ export const Navbar = () => {
   return (
     <div className="navbar">
       <Link to="/">
-        <Image src="../images/PN.png" height={50} width={50} />
+        <Image src="../../images/PN.png" height={50} width={50} />
       </Link>
       {(!userContext.token ||
         userContext.userRole?.includes(Role.REGISTERED)) && (

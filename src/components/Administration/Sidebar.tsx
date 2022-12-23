@@ -30,7 +30,6 @@ export const Sidebar: React.FC = () => {
       style={{
         display: "flex",
         position: "relative",
-        height: "100vh",
         width: "440px",
         backgroundColor: "#212529",
         boxShadow: "0 2px 4px 0 #4d3c8233",
@@ -85,10 +84,10 @@ export const Sidebar: React.FC = () => {
       {isOpen && (
         <div className="sidebarContent">
           <ul>
-            <li className="sidebarList">
+            <NavLink to="/" className="sidebarList">
               <ArrowBarToRight size={25} strokeWidth={2} color={"white"} />
               <h1 className="sidebarItems">Dashboard</h1>
-            </li>
+            </NavLink>
             <li className="sidebarList">
               <ArrowBarToRight size={25} strokeWidth={2} color={"white"} />
               <h1 className="sidebarItems">Categories</h1>

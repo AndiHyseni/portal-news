@@ -6,3 +6,7 @@ export enum NEWS {
 export enum CREATE_NEWS {
   CREATE_NEWS = "addnews",
 }
+
+export enum SAVED_NEWS {
+  SAVED_NEWS = "addSavedNews",
+}

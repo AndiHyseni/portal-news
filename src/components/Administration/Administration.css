@@ -1,6 +1,6 @@
 .sidebarButton {
   position: absolute;
-  margin-left: 189px;
+  margin-left: 211px;
   color: white;
 }
 
@@ -30,4 +30,35 @@ ul {
 .sidebarItems {
   font-size: 23px;
   padding-left: 6px;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.raports {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 30px;
+}
+
+.raportBox {
+  border: 1px #ced4da solid;
+  padding: 10px;
+  box-shadow: 10px 5px 5px #e3e1ea;
+}
+
+.boxTitle {
+  color: black;
+  display: flex;
+  justify-content: space-around;
+  font-size: 20px;
+}
+
+.boxParagraph {
+  color: grey;
+  display: flex;
+  justify-content: space-around;
 }
