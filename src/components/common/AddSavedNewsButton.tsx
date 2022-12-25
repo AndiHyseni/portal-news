@@ -3,10 +3,11 @@ import { Heart } from "tabler-icons-react";
 import jwt_decode from "jwt-decode";
 import { News, SavedNewsPayload } from "../../types/news/news";
 import "../NewsDetailsId/NewsDetailsId.css";
+import { Users } from "../../types/administration/administration";
 
 export interface SavedNewsProps {
   newsId: number;
-  userId: string;
+  userId: Users;
   savedNews: SavedNewsPayload | undefined;
   mutation: any;
 }
@@ -18,7 +19,7 @@ export const AddSavedNewsButton: React.FC<SavedNewsProps> = ({
   mutation,
 }) => {
   const newsIds = Number(newsId);
-  const userIds = savedNews?.userId;
+  const userIds = userId.userId;
 
   const handleSubmit = () => {
     mutation.mutate({

@@ -9,3 +9,10 @@ export interface Rapport {
   users: number;
   vIews: number;
 }
+
+export interface Users {
+  email: string;
+  role: string;
+  userId: string;
+  userName: string;
+}

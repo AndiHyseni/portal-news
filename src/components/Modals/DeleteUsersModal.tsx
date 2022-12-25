@@ -1,9 +1,9 @@
 import { Box, Button, Group, Modal, Text } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
-import { News } from "../../types/news/news";
+import { Users } from "../../types/administration/administration";
 
-export interface DeleteNewsModalProps {
-  news: News;
+export interface DeleteUsersModalProps {
+  users: Users;
   title: string;
   text: string;
   opened: boolean;
@@ -11,8 +11,8 @@ export interface DeleteNewsModalProps {
   onClose: () => void;
 }
 
-export const DeleteNewsModal: React.FC<DeleteNewsModalProps> = ({
-  news,
+export const DeleteUsersModal: React.FC<DeleteUsersModalProps> = ({
+  users,
   title,
   text,
   opened,
@@ -26,10 +26,10 @@ export const DeleteNewsModal: React.FC<DeleteNewsModalProps> = ({
   };
 
   const handleSubmit = () => {
-    mutation.mutate(news.newsId, {
+    mutation.mutate(users.userId, {
       onSuccess: () => {
         handleClose();
-        navigate("/news");
+        navigate("/users");
       },
     });
   };
