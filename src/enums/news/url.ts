@@ -9,4 +9,6 @@ export enum CREATE_NEWS {
 
 export enum SAVED_NEWS {
   SAVED_NEWS = "addSavedNews",
+  GET_SAVED = "getSaved",
+  DELETE_SAVED = "deleteSaved",
 }

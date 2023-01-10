@@ -8,6 +8,7 @@ import { AdminNewsDetails } from "../pages/AdminNewsDetails/AdminNewsDetails";
 import { AdminUsers } from "../pages/AdminUsers/AdminUsers";
 import { Homepage } from "../pages/Homepage/Homepage";
 import { NewsDetails } from "../pages/NewsDetails/NewsDetails";
+import { SavedNews } from "../pages/SavedNews/SavedNews";
 import { ErrorPage } from "./ErrorPage";
 
 export const Router: React.FC = () => {
@@ -24,6 +25,7 @@ export const Router: React.FC = () => {
         <Route path="/news/details/:newsId" element={<AdminNewsDetails />} />
         <Route path="/news/edit/:newsId" element={<EditNewsPage />} />
         <Route path="/users" element={<AdminUsers />} />
+        <Route path="/saved" element={<SavedNews />} />
       </Routes>
     </BrowserRouter>
   );

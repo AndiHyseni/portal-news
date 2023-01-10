@@ -28,6 +28,7 @@ a {
 h1 {
   color: white;
   font-size: 15px;
+  align-items: center;
 }
 
 .logintext {
@@ -36,9 +37,32 @@ h1 {
 }
 
 .username {
-  padding-right: 15px;
+  padding-right: 10px;
+  cursor: pointer;
+}
+
+.username:hover {
+  color: #f3f3f3;
+}
+
+.usernameArrow {
+  cursor: pointer;
+  top: 5px;
+  position: relative;
+}
+
+.usernameArrow:hover {
+  color: #f3f3f3;
 }
 
 .logoutbutton {
   padding-right: 5px;
+  position: relative;
+  top: 5px;
+}
+
+.menuItem {
+  color: black;
+  margin: 0px;
+  display: inline;
 }

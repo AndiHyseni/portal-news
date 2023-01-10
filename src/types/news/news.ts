@@ -1,4 +1,5 @@
 export interface News {
+  userId: string;
   categoryId: number;
   content: string;
   expireDate: string;
@@ -29,4 +30,19 @@ export interface CreateNewsPayload {
 export interface SavedNewsPayload {
   newsId: number;
   userId: string;
+}
+
+export interface SavedNewsPage {
+  newsId: number;
+  userId: string;
+  categoryId: number;
+  title: string;
+  image: string;
+  content: string;
+  expireDate: string;
+  isDeleted: Boolean;
+  isFeatured: Boolean;
+  subTitle: string;
+  tags: string;
+  video: string;
 }

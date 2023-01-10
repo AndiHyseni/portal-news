@@ -1,8 +1,10 @@
 import { BaseUrl } from "../../enums/baseUrl";
 import { CREATE_NEWS, NEWS, SAVED_NEWS } from "../../enums/news/url";
+import { Users } from "../../types/administration/administration";
 import {
   CreateNewsPayload,
   News,
+  SavedNewsPage,
   SavedNewsPayload,
 } from "../../types/news/news";
 import { axiosInstance } from "../config";
@@ -42,6 +44,32 @@ export const savedNews = async (payload: SavedNewsPayload): Promise<number> => {
   const { data } = await axiosInstance.post(
     `${BaseUrl.DEVELOPMENT}/${SAVED_NEWS.SAVED_NEWS}`,
     payload
+  );
+  return data;
+};
+
+export const savedNewsPage = async (
+  userId: string
+): Promise<SavedNewsPage[]> => {
+  const { data } = await axiosInstance.get(
+    `${BaseUrl.DEVELOPMENT}/${SAVED_NEWS.GET_SAVED}/${userId.split(",")[0]}`
+  );
+  return data;
+};
+
+export const savedOneNewsPage = async (
+  userId: string
+): Promise<SavedNewsPage> => {
+  const { data } = await axiosInstance.get(
+    `${BaseUrl.DEVELOPMENT}/${SAVED_NEWS.GET_SAVED}/${userId}`
+  );
+  return data;
+};
+
+export const deleteSavedNews = async (newsId: number): Promise<void> => {
+  const { data } = await axiosInstance.post(
+    `${BaseUrl.DEVELOPMENT}/${SAVED_NEWS.DELETE_SAVED}`,
+    newsId
   );
   return data;
 };

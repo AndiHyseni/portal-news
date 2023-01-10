@@ -1,13 +1,14 @@
-import { Button, Image } from "@mantine/core";
+import { Button, Image, Menu } from "@mantine/core";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
-import { Logout, User, UserPlus } from "tabler-icons-react";
+import { Link, useNavigate } from "react-router-dom";
+import { ChevronDown, Logout, User, UserPlus } from "tabler-icons-react";
 import { UserContext } from "../../contexes/UserContext";
 import { Role } from "../../types/auth/login";
 import "../Navbar/Navbar.css";
 
 export const Navbar = () => {
   const [userContext] = useContext(UserContext);
+  const navigate = useNavigate();
   const logout = () => {
     localStorage.removeItem("jwt");
     window.location.reload();
@@ -34,8 +35,35 @@ export const Navbar = () => {
       )}
       {userContext.token && (
         <div className="loginNavbar">
-          <h1 className="username">{userContext.username}</h1>
-          <Button onClick={logout}>
+          <Menu>
+            <Menu.Target>
+              <h1 className="username">
+                {userContext.username}{" "}
+                <ChevronDown
+                  className="usernameArrow"
+                  size={20}
+                  strokeWidth={2}
+                  color={"white"}
+                />
+              </h1>
+            </Menu.Target>
+            <Menu.Dropdown>
+              <Menu.Item onClick={() => navigate(`/saved`)}>
+                <h1 className="menuItem">Saved News</h1>
+              </Menu.Item>
+              <Menu.Item onClick={logout}>
+                {" "}
+                <Logout
+                  className="logoutbutton"
+                  size={20}
+                  strokeWidth={2}
+                  color={"black"}
+                />
+                <h1 className="menuItem">Logout</h1>
+              </Menu.Item>
+            </Menu.Dropdown>
+          </Menu>
+          {/* <Button onClick={logout}>
             <Logout
               className="logoutbutton"
               size={20}
@@ -43,7 +71,7 @@ export const Navbar = () => {
               color={"white"}
             />{" "}
             <h1>Logout</h1>
-          </Button>
+          </Button> */}
         </div>
       )}
       {!userContext.token && (
