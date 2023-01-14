@@ -1,5 +1,4 @@
 import { Button, Table } from "@mantine/core";
-import { Link } from "react-router-dom";
 import { Edit, Trash } from "tabler-icons-react";
 import { Users } from "../../types/administration/administration";
 

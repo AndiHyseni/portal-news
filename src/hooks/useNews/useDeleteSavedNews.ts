@@ -4,7 +4,6 @@ import i18n from "i18next";
 import { endNotification, startNotification } from "../../utils/notifications";
 import { generateRandomString } from "../../utils/randomString";
 import { queryClient } from "../../App";
-import { SavedNewsPayload } from "../../types/news/news";
 
 export const useDeleteSavedNews = () => {
   const randomId = generateRandomString(20);

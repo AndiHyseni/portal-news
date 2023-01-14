@@ -16,3 +16,19 @@ export interface Users {
   userId: string;
   userName: string;
 }
+
+export interface Views {
+  id: number;
+  newsTitle: string;
+  nrOfClicks: number;
+}
+
+export interface ViewsDetails {
+  fingerPrintId: string;
+  news: string;
+  newsId: number;
+  user: string;
+  userId: string;
+  watchId: number;
+  watchedOn: string;
+}

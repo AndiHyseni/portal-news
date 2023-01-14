@@ -1,11 +1,14 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { LoginPage } from "../components/Login/LoginPage";
 import { RegisterPage } from "../components/Register/RegisterPage";
+import { AdminCategories } from "../pages/AdminCategories/AdminCategories";
 import { AddNewsPage } from "../pages/AdminNews/AddNewsPage";
 import { AdminNews } from "../pages/AdminNews/AdminNews";
 import { EditNewsPage } from "../pages/AdminNews/EditNewsPage";
 import { AdminNewsDetails } from "../pages/AdminNewsDetails/AdminNewsDetails";
 import { AdminUsers } from "../pages/AdminUsers/AdminUsers";
+import { AdminViews } from "../pages/AdminViews/AdminViews";
+import { AdminViewsDetails } from "../pages/AdminViews/AdminViewsDetails";
 import { Homepage } from "../pages/Homepage/Homepage";
 import { NewsDetails } from "../pages/NewsDetails/NewsDetails";
 import { SavedNews } from "../pages/SavedNews/SavedNews";
@@ -26,6 +29,9 @@ export const Router: React.FC = () => {
         <Route path="/news/edit/:newsId" element={<EditNewsPage />} />
         <Route path="/users" element={<AdminUsers />} />
         <Route path="/saved" element={<SavedNews />} />
+        <Route path="/Category" element={<AdminCategories />} />
+        <Route path="/views" element={<AdminViews />} />
+        <Route path="/views/:newsId" element={<AdminViewsDetails />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,6 +1,5 @@
 import { BaseUrl } from "../../enums/baseUrl";
 import { CREATE_NEWS, NEWS, SAVED_NEWS } from "../../enums/news/url";
-import { Users } from "../../types/administration/administration";
 import {
   CreateNewsPayload,
   News,
@@ -53,15 +52,6 @@ export const savedNewsPage = async (
 ): Promise<SavedNewsPage[]> => {
   const { data } = await axiosInstance.get(
     `${BaseUrl.DEVELOPMENT}/${SAVED_NEWS.GET_SAVED}/${userId.split(",")[0]}`
-  );
-  return data;
-};
-
-export const savedOneNewsPage = async (
-  userId: string
-): Promise<SavedNewsPage> => {
-  const { data } = await axiosInstance.get(
-    `${BaseUrl.DEVELOPMENT}/${SAVED_NEWS.GET_SAVED}/${userId}`
   );
   return data;
 };
