@@ -6,6 +6,8 @@ import { AddNewsPage } from "../pages/AdminNews/AddNewsPage";
 import { AdminNews } from "../pages/AdminNews/AdminNews";
 import { EditNewsPage } from "../pages/AdminNews/EditNewsPage";
 import { AdminNewsDetails } from "../pages/AdminNewsDetails/AdminNewsDetails";
+import { AdminReactions } from "../pages/AdminReactions/AdminReactions";
+import { AdminReactionsDetails } from "../pages/AdminReactions/AdminReactionsDetails";
 import { AdminUsers } from "../pages/AdminUsers/AdminUsers";
 import { AdminViews } from "../pages/AdminViews/AdminViews";
 import { AdminViewsDetails } from "../pages/AdminViews/AdminViewsDetails";
@@ -32,6 +34,8 @@ export const Router: React.FC = () => {
         <Route path="/Category" element={<AdminCategories />} />
         <Route path="/views" element={<AdminViews />} />
         <Route path="/views/:newsId" element={<AdminViewsDetails />} />
+        <Route path="/reaction" element={<AdminReactions />} />
+        <Route path="/reaction/:newsId" element={<AdminReactionsDetails />} />
       </Routes>
     </BrowserRouter>
   );

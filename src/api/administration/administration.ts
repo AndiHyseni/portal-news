@@ -1,11 +1,14 @@
 import {
   RAPPORT,
+  REACTION,
   USERS,
   VIEWS,
 } from "../../enums/administration/administration";
 import { BaseUrl } from "../../enums/baseUrl";
 import {
   Rapport,
+  Reaction,
+  ReactionsDetails,
   Users,
   Views,
   ViewsDetails,
@@ -45,6 +48,22 @@ export const getViewsDetails = async (
 ): Promise<ViewsDetails[]> => {
   const { data } = await axiosInstance.get(
     `${BaseUrl.DEVELOPMENT}/${VIEWS.GET_WATCHED}/${newsId}`
+  );
+  return data;
+};
+
+export const getReactions = async (): Promise<Reaction[]> => {
+  const { data } = await axiosInstance.get(
+    `${BaseUrl.DEVELOPMENT}/${REACTION.GET_REACTIONS}`
+  );
+  return data;
+};
+
+export const getreactionsDetails = async (
+  newsId: number
+): Promise<ReactionsDetails[]> => {
+  const { data } = await axiosInstance.get(
+    `${BaseUrl.DEVELOPMENT}/${REACTION.GET_REACTIONS_DETAILS}/${newsId}`
   );
   return data;
 };

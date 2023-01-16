@@ -32,6 +32,10 @@ ul {
   padding-left: 6px;
 }
 
+.sidebarItems:hover {
+  color: #1c7ed6;
+}
+
 .dashboard {
   display: flex;
   flex-direction: column;

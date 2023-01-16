@@ -2,21 +2,21 @@ import { Container } from "@mantine/core";
 import { useParams } from "react-router-dom";
 import { Sidebar } from "../../components/Administration/Sidebar";
 import { BasePage } from "../../components/BasePage/BasePage";
-import { ViewsDetailsTable } from "../../components/Tables/ViewsDetailsTable";
-import { useViewsDetails } from "../../hooks/useViews/useViewsDetails";
-import "../AdminViews/AdminViews.css";
+import { ReactionsDetailsTable } from "../../components/Tables/ReactionsDetailsTable";
+import { useReactionsDetails } from "../../hooks/useReactions/useReactionsDetails";
+import "../AdminReactions/AdminReactions.css";
 
-export const AdminViewsDetails: React.FC = () => {
+export const AdminReactionsDetails: React.FC = () => {
   const { newsId } = useParams();
-  const { data } = useViewsDetails(Number(newsId));
+  const { data } = useReactionsDetails(Number(newsId));
 
   return (
     <BasePage>
       <div style={{ display: "flex" }}>
         <Sidebar />
         <Container style={{ width: "100%" }}>
-          <div className="adminViewsdiv">
-            {data && <ViewsDetailsTable viewsDetails={data} />}
+          <div className="adminReactionsdiv">
+            {data && <ReactionsDetailsTable reactionsDetails={data} />}
           </div>
         </Container>
       </div>

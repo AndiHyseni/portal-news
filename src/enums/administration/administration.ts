@@ -11,3 +11,8 @@ export enum VIEWS {
   GET_VIEWS = "getViews",
   GET_WATCHED = "getwatched",
 }
+
+export enum REACTION {
+  GET_REACTIONS = "reaction",
+  GET_REACTIONS_DETAILS = "getreactions",
+}

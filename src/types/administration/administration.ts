@@ -32,3 +32,35 @@ export interface ViewsDetails {
   watchId: number;
   watchedOn: string;
 }
+
+export interface Reaction {
+  angry: number;
+  happy: number;
+  newsId: number;
+  sad: number;
+}
+
+export interface ReactionsDetails {
+  news: string;
+  newsId: number;
+  reaction: number;
+  reactionId: number;
+  user: {
+    accessFailedCount: number;
+    concurrencyStamp: string;
+    email: string;
+    emailConfirmed: Boolean;
+    id: string;
+    lockoutEnabled: Boolean;
+    lockoutEnd: string;
+    normalizedEmail: string;
+    normalizedUserName: string;
+    passwordHash: string;
+    phoneNumber: string;
+    phoneNumberConfirmed: Boolean;
+    securityStamp: string;
+    twoFactorEnabled: Boolean;
+    userName: string;
+  };
+  userId: string;
+}
