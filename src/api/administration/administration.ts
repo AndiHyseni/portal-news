@@ -1,4 +1,5 @@
 import {
+  EDITUSER,
   RAPPORT,
   REACTION,
   USERS,
@@ -6,6 +7,8 @@ import {
 } from "../../enums/administration/administration";
 import { BaseUrl } from "../../enums/baseUrl";
 import {
+  AddAdmin,
+  EditAdmin,
   Rapport,
   Reaction,
   ReactionsDetails,
@@ -64,6 +67,22 @@ export const getreactionsDetails = async (
 ): Promise<ReactionsDetails[]> => {
   const { data } = await axiosInstance.get(
     `${BaseUrl.DEVELOPMENT}/${REACTION.GET_REACTIONS_DETAILS}/${newsId}`
+  );
+  return data;
+};
+
+export const addUser = async (payload: AddAdmin): Promise<number> => {
+  const { data } = await axiosInstance.post(
+    `${BaseUrl.DEVELOPMENT}/${USERS.GET_ACCOUNT}`,
+    payload
+  );
+  return data;
+};
+
+export const editUser = async (payload: EditAdmin): Promise<string> => {
+  const { data } = await axiosInstance.post(
+    `${BaseUrl.DEVELOPMENT}/${EDITUSER.EDIT_USER}`,
+    payload
   );
   return data;
 };

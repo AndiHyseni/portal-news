@@ -16,3 +16,7 @@ export enum REACTION {
   GET_REACTIONS = "reaction",
   GET_REACTIONS_DETAILS = "getreactions",
 }
+
+export enum EDITUSER {
+  EDIT_USER = "editUser",
+}

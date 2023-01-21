@@ -1,5 +1,6 @@
 import { Button, Container } from "@mantine/core";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { CirclePlus } from "tabler-icons-react";
 import { Sidebar } from "../../components/Administration/Sidebar";
 import { BasePage } from "../../components/BasePage/BasePage";
@@ -12,6 +13,7 @@ import "../AdminUsers/AdminUsers.css";
 
 export const AdminUsers: React.FC = () => {
   const { data } = useUsers();
+  const navigate = useNavigate();
   const [selectedUser, setSelectedUser] = useState<Users>();
   const [isDeleteUsersModalOpen, setIsDeleteUsersModalOpen] = useState(false);
   const deleteUsersMutation = useDeleteUsers();
@@ -25,7 +27,7 @@ export const AdminUsers: React.FC = () => {
         <Sidebar />
         <Container style={{ width: "100%" }}>
           <div className="adminUsersdiv">
-            <Button className="addButton">
+            <Button className="addButton" onClick={() => navigate("/addAdmin")}>
               <CirclePlus size={20} strokeWidth={2} color={"white"} />
               Add Users
             </Button>

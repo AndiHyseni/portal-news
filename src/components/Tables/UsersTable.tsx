@@ -1,4 +1,5 @@
 import { Button, Table } from "@mantine/core";
+import { useNavigate } from "react-router-dom";
 import { Edit, Trash } from "tabler-icons-react";
 import { Users } from "../../types/administration/administration";
 
@@ -8,6 +9,8 @@ export interface TableProps {
 }
 
 export const UsersTable: React.FC<TableProps> = ({ users, onDeleteUsers }) => {
+  const navigate = useNavigate();
+
   return (
     <Table
       data-testid="users-table"
@@ -37,7 +40,7 @@ export const UsersTable: React.FC<TableProps> = ({ users, onDeleteUsers }) => {
             <td>{user.email}</td>
             <td>{user.role}</td>
             <td>
-              <Button>
+              <Button onClick={() => navigate(`/editUser`)}>
                 <Edit size={20} strokeWidth={2} color={"white"} />
               </Button>
             </td>

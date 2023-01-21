@@ -64,3 +64,19 @@ export interface ReactionsDetails {
   };
   userId: string;
 }
+
+export interface AddAdmin {
+  role: string;
+  userId: string;
+  userName: string;
+  confirmPassword: string;
+  email: string;
+  password: string;
+}
+
+export interface EditAdmin {
+  email: string;
+  role: string;
+  userId: string;
+  userName: string;
+}
