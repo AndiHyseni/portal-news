@@ -1,18 +1,21 @@
 import { Container } from "@mantine/core";
 import { useRegister } from "../../hooks/useAuth/useRegister";
+import { useCategories } from "../../hooks/useCategories/useCategories";
 import { Register } from "../../pages/Register/Register";
 import { Footer } from "../Footer/Footer";
 import { Navbar } from "../Navbar/Navbar";
 
 export const RegisterPage: React.FC = () => {
   const createRegisterMutation = useRegister();
+  const { data } = useCategories();
+
   return (
     <>
-      <Navbar />
+      {data && <Navbar categories={data} />}
       <Container>
         <Register mutation={createRegisterMutation} />
       </Container>
-      <Footer />
+      {data && <Footer categories={data} />}
     </>
   );
 };

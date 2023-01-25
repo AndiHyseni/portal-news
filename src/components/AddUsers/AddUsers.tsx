@@ -20,6 +20,11 @@ export const AddUsers: React.FC = () => {
 
   const [addRole, setAddRole] = useState<string | null>("");
 
+  const roleOptions = [
+    { value: "Admin", label: "Admin" },
+    { value: "Registered", label: "Registered" },
+  ];
+
   const form = useForm({
     initialValues: {
       role: "",
@@ -95,7 +100,8 @@ export const AddUsers: React.FC = () => {
           className="addUserElement"
           label="Role"
           placeholder="Role..."
-          data={["User", "Admin"]}
+          data={roleOptions}
+          {...form.getInputProps("role")}
           searchable
           maxDropdownHeight={400}
           required

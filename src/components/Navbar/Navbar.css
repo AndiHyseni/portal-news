@@ -19,6 +19,10 @@ a {
   margin-right: 10px;
 }
 
+.navbarItem:hover {
+  color: darkgray;
+}
+
 .loginNavbar {
   display: flex;
   align-items: center;

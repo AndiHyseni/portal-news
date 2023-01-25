@@ -1,18 +1,17 @@
-.savedNewsPage {
+.newsByCategoryPage {
   background-color: white;
   display: flex;
   margin-top: 20px;
+  margin-bottom: 20px;
   border-radius: 30px;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.savedNews {
+.newsByCategory {
   width: 300px;
   background-color: white;
   margin: 25px;
-  padding-left: 10px;
-  padding-right: 10px;
   border: 1px #ced4da solid;
   box-shadow: 10px 5px 5px #e3e1ea;
   display: flex;
@@ -21,13 +20,19 @@
   padding-bottom: 10px;
 }
 
-.savedNewsTitle {
+.newsByCategoryTitle {
   color: black;
+  cursor: pointer;
   justify-content: center;
   display: flex;
+  padding: 10px;
+  font-weight: 700;
 }
 
-.savedNewsButtons {
-  display: flex;
-  justify-content: space-evenly;
+.newsByCategoryImage {
+  cursor: pointer;
+}
+
+.newsByCategoryTitle:hover {
+  color: #26145c;
 }

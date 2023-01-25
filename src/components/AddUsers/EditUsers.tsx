@@ -24,6 +24,11 @@ export const EditUsers: React.FC<EditUserProps> = ({ editUser, mutation }) => {
 
   const [addRole, setAddRole] = useState<string | null>("");
 
+  const roleOptions = [
+    { value: "Admin", label: "Admin" },
+    { value: "Registered", label: "Registered" },
+  ];
+
   const form = useForm({
     initialValues: {
       role: editUser.role,
@@ -99,7 +104,8 @@ export const EditUsers: React.FC<EditUserProps> = ({ editUser, mutation }) => {
           className="addUserElement"
           label="Role"
           placeholder="Role..."
-          data={["User", "Admin"]}
+          data={roleOptions}
+          {...form.getInputProps("role")}
           searchable
           maxDropdownHeight={400}
           required

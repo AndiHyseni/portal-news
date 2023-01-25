@@ -1,8 +1,13 @@
 import "../Footer/Footer.css";
 import { Image } from "@mantine/core";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { Categories } from "../../types/categories/categories";
 
-export const Footer: React.FC = () => {
+export interface CategoriesProps {
+  categories: Categories[];
+}
+
+export const Footer: React.FC<CategoriesProps> = ({ categories }) => {
   return (
     <div className="footer">
       <div style={{ display: "flex" }}>
@@ -23,15 +28,11 @@ export const Footer: React.FC = () => {
           <div className="footerFirstItem">
             <b>Udhëzim</b>
           </div>
-          <Link to="/">
-            <div className="footerItem">Bota</div>
-          </Link>
-          <Link to="/">
-            <div className="footerItem">Sport</div>
-          </Link>
-          <Link to="/">
-            <div className="footerItem">Ekonomi</div>
-          </Link>
+          {categories.map((categories, index) => (
+            <NavLink key={index} to={`/category/${categories.categoryId}`}>
+              <div className="footerItem">{categories.name}</div>
+            </NavLink>
+          ))}
         </div>
       </div>
       <div className="hr-footer">

@@ -41,3 +41,13 @@
 .footerImage {
   width: 14%;
 }
+
+.footerItem {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.footerItem:hover {
+  color: darkgray;
+}

@@ -10,11 +10,14 @@ import { UserContext } from "../../contexes/UserContext";
 import { Administration } from "../../components/Administration/Administration";
 import { Role } from "../../types/auth/login";
 import { Sidebar } from "../../components/Administration/Sidebar";
+import { MostWatchedNews } from "../../components/MostWatchedNews/MostWatchedNews";
+import { useCategories } from "../../hooks/useCategories/useCategories";
 
 export const Homepage: React.FC = () => {
   const { data } = useNews();
   const { data: raportData } = useRapport();
   const [userContext] = useContext(UserContext);
+  const { data: categori } = useCategories();
 
   return (
     <>
@@ -25,7 +28,12 @@ export const Homepage: React.FC = () => {
             <div className="homepage">
               {data && <HomepageNews homenews={data} />}
             </div>
-            <div>{data && <SiteNewsOnPage homenews={data} />}</div>
+            <div>
+              {data && categori && (
+                <SiteNewsOnPage homenews={data} categories={categori} />
+              )}
+            </div>
+            <div>{data && <MostWatchedNews mostwatched={data} />}</div>
           </Container>
         </BasePage>
       )}

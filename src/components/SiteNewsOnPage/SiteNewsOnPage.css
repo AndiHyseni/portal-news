@@ -5,7 +5,7 @@
 
 .fokus {
   font-size: 20px;
-  color: black;
+  color: #26145c;
 }
 
 .sitediv {
@@ -24,11 +24,25 @@
   font-size: 16px;
   padding-left: 10px;
   padding-right: 10px;
+  cursor: pointer;
+}
+
+.sitetitle:hover {
+  color: #26145c;
 }
 
 .sitep {
-  color: red;
   padding-left: 10px;
+}
+
+.sitec {
+  width: 0%;
+  color: red;
+  cursor: pointer;
+}
+
+.sitec:hover {
+  color: brown;
 }
 
 .siteimage {
@@ -38,4 +52,5 @@
   padding: 3px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }

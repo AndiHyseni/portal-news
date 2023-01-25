@@ -1,12 +1,18 @@
 import { Button, Image, Menu } from "@mantine/core";
 import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { ChevronDown, Logout, User, UserPlus } from "tabler-icons-react";
 import { UserContext } from "../../contexes/UserContext";
+import { useCategories } from "../../hooks/useCategories/useCategories";
 import { Role } from "../../types/auth/login";
+import { Categories } from "../../types/categories/categories";
 import "../Navbar/Navbar.css";
 
-export const Navbar = () => {
+export interface CategoriesProps {
+  categories: Categories[];
+}
+
+export const Navbar: React.FC<CategoriesProps> = ({ categories }) => {
   const [userContext] = useContext(UserContext);
   const navigate = useNavigate();
   const logout = () => {
@@ -22,15 +28,11 @@ export const Navbar = () => {
       {(!userContext.token ||
         userContext.userRole?.includes(Role.REGISTERED)) && (
         <div style={{ display: "flex" }}>
-          <Link to="/">
-            <div className="navbarItem">Bota</div>
-          </Link>
-          <Link to="/">
-            <div className="navbarItem">Sport</div>
-          </Link>
-          <Link to="/">
-            <div className="navbarItem">Ekonomi</div>
-          </Link>
+          {categories.map((categories, index) => (
+            <NavLink key={index} to={`/category/${categories.categoryId}`}>
+              <div className="navbarItem">{categories.name}</div>
+            </NavLink>
+          ))}
         </div>
       )}
       {userContext.token && (

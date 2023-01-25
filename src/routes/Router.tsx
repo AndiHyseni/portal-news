@@ -14,6 +14,7 @@ import { EditUsersPage } from "../pages/AdminUsers/EditUsers";
 import { AdminViews } from "../pages/AdminViews/AdminViews";
 import { AdminViewsDetails } from "../pages/AdminViews/AdminViewsDetails";
 import { Homepage } from "../pages/Homepage/Homepage";
+import { NewsByCategory } from "../pages/NewsByCategory/NewsByCategory";
 import { NewsDetails } from "../pages/NewsDetails/NewsDetails";
 import { SavedNews } from "../pages/SavedNews/SavedNews";
 import { ErrorPage } from "./ErrorPage";
@@ -40,6 +41,7 @@ export const Router: React.FC = () => {
         <Route path="/reaction/:newsId" element={<AdminReactionsDetails />} />
         <Route path="/addAdmin" element={<AddUsersPage />} />
         <Route path="/editUser" element={<EditUsersPage />} />
+        <Route path="/category/:categoryId" element={<NewsByCategory />} />
       </Routes>
     </BrowserRouter>
   );
