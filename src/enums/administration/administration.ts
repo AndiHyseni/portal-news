@@ -15,6 +15,7 @@ export enum VIEWS {
 export enum REACTION {
   GET_REACTIONS = "reaction",
   GET_REACTIONS_DETAILS = "getreactions",
+  GET_ADD_REACTION = "addReaction",
 }
 
 export enum EDITUSER {

@@ -1,4 +1,5 @@
 import { Button, Image, Menu } from "@mantine/core";
+import jwtDecode from "jwt-decode";
 import { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { ChevronDown, Logout, User, UserPlus } from "tabler-icons-react";
@@ -17,8 +18,13 @@ export const Navbar: React.FC<CategoriesProps> = ({ categories }) => {
   const navigate = useNavigate();
   const logout = () => {
     localStorage.removeItem("jwt");
+    navigate("/");
     window.location.reload();
   };
+  const token: any =
+    localStorage.getItem("jwt") != null
+      ? jwtDecode(localStorage.getItem("jwt")!)
+      : null;
 
   return (
     <div className="navbar">
@@ -35,12 +41,16 @@ export const Navbar: React.FC<CategoriesProps> = ({ categories }) => {
           ))}
         </div>
       )}
-      {userContext.token && (
+      {token != null && (
         <div className="loginNavbar">
           <Menu>
             <Menu.Target>
               <h1 className="username">
-                {userContext.username}{" "}
+                {
+                  token[
+                    "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
+                  ]
+                }
                 <ChevronDown
                   className="usernameArrow"
                   size={20}
@@ -65,18 +75,9 @@ export const Navbar: React.FC<CategoriesProps> = ({ categories }) => {
               </Menu.Item>
             </Menu.Dropdown>
           </Menu>
-          {/* <Button onClick={logout}>
-            <Logout
-              className="logoutbutton"
-              size={20}
-              strokeWidth={2}
-              color={"white"}
-            />{" "}
-            <h1>Logout</h1>
-          </Button> */}
         </div>
       )}
-      {!userContext.token && (
+      {token == null && (
         <div className="loginNavbar">
           <Link to="/login">
             <User size={20} strokeWidth={2} color={"white"} />

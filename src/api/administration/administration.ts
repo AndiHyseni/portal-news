@@ -8,6 +8,7 @@ import {
 import { BaseUrl } from "../../enums/baseUrl";
 import {
   AddAdmin,
+  AddReaction,
   EditAdmin,
   Rapport,
   Reaction,
@@ -82,6 +83,14 @@ export const addUser = async (payload: AddAdmin): Promise<number> => {
 export const editUser = async (payload: EditAdmin): Promise<string> => {
   const { data } = await axiosInstance.post(
     `${BaseUrl.DEVELOPMENT}/${EDITUSER.EDIT_USER}`,
+    payload
+  );
+  return data;
+};
+
+export const addReaction = async (payload: AddReaction): Promise<number> => {
+  const { data } = await axiosInstance.post(
+    `${BaseUrl.DEVELOPMENT}/${REACTION.GET_ADD_REACTION}`,
     payload
   );
   return data;

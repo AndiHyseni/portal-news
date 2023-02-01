@@ -4,22 +4,28 @@ import jwt_decode from "jwt-decode";
 import { News, SavedNewsPayload } from "../../types/news/news";
 import "../NewsDetailsId/NewsDetailsId.css";
 import { Users } from "../../types/administration/administration";
+import jwtDecode from "jwt-decode";
 
 export interface SavedNewsProps {
   newsId: number;
-  userId: Users;
   savedNews: SavedNewsPayload | undefined;
   mutation: any;
 }
 
 export const AddSavedNewsButton: React.FC<SavedNewsProps> = ({
   newsId,
-  userId,
   savedNews,
   mutation,
 }) => {
+  const token: any =
+    localStorage.getItem("jwt") != null
+      ? jwtDecode(localStorage.getItem("jwt")!)
+      : null;
   const newsIds = Number(newsId);
-  const userIds = userId.userId;
+  const userIds =
+    token[
+      "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+    ];
 
   const handleSubmit = () => {
     mutation.mutate({

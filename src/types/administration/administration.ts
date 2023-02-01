@@ -40,6 +40,12 @@ export interface Reaction {
   sad: number;
 }
 
+export interface AddReaction {
+  newsId: number;
+  reaction: number;
+  userId: string;
+}
+
 export interface ReactionsDetails {
   news: string;
   newsId: number;

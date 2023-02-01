@@ -47,7 +47,6 @@ export const AdminNewsDetailsC: React.FC<NewsDetailsProps> = ({
         {news && data && (
           <AddSavedNewsButton
             newsId={Number(newsId)}
-            userId={data[0]}
             savedNews={savedNews}
             mutation={savedNewsMutation}
           />

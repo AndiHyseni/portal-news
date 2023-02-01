@@ -10,10 +10,6 @@ export const LoginPage: React.FC = () => {
   const createLoginMutation = useLogin();
   const { data } = useCategories();
 
-  useEffect(() => {
-    console.log("mutation", createLoginMutation);
-  }, []);
-
   return (
     <>
       {data && <Navbar categories={data} />}

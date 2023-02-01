@@ -1,4 +1,5 @@
 import { Box, Button, Group, Modal, Text } from "@mantine/core";
+import jwtDecode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { Users } from "../../types/administration/administration";
 import { News, SavedNewsPage } from "../../types/news/news";
@@ -24,6 +25,18 @@ export const DeleteSavedNewsModal: React.FC<DeleteSavedNewsModalProps> = ({
 }) => {
   const navigate = useNavigate();
 
+  var token: any =
+    localStorage.getItem("jwt") != null
+      ? jwtDecode(localStorage.getItem("jwt")!)
+      : null;
+
+  var id: string =
+    token != null
+      ? token[
+          "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+        ]
+      : savedNews.userId;
+
   const handleClose = () => {
     onClose();
   };
@@ -32,7 +45,7 @@ export const DeleteSavedNewsModal: React.FC<DeleteSavedNewsModalProps> = ({
     mutation.mutate(
       {
         newsId: savedNews.newsId,
-        userId: userId.userId,
+        userId: id,
       },
       {
         onSuccess: () => {

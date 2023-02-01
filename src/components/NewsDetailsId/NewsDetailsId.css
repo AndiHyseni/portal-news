@@ -62,3 +62,39 @@
 .deleteButton:hover {
   background-color: rgb(148, 4, 4);
 }
+
+.savedButton {
+  width: 100%;
+  margin-top: 25px;
+}
+
+.reactions {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.reactionTitle {
+  color: black;
+  font-size: 20px;
+}
+
+.reactionEmoji {
+  display: flex;
+}
+
+.reactionImage {
+  margin-right: 20px;
+  border: 2px solid #dee2e6;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.reactionImage:hover {
+  box-shadow: 10px 5px 5px #dee2e6;
+}
+
+.counter {
+  position: relative;
+  left: 20px;
+  z-index: 1;
+}
