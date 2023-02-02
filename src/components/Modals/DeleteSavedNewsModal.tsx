@@ -50,6 +50,7 @@ export const DeleteSavedNewsModal: React.FC<DeleteSavedNewsModalProps> = ({
       {
         onSuccess: () => {
           handleClose();
+          window.location.reload();
         },
       }
     );

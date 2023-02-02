@@ -1,10 +1,9 @@
-import { Button, Image, Menu } from "@mantine/core";
+import { Image, Menu } from "@mantine/core";
 import jwtDecode from "jwt-decode";
 import { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { ChevronDown, Logout, User, UserPlus } from "tabler-icons-react";
 import { UserContext } from "../../contexes/UserContext";
-import { useCategories } from "../../hooks/useCategories/useCategories";
 import { Role } from "../../types/auth/login";
 import { Categories } from "../../types/categories/categories";
 import "../Navbar/Navbar.css";

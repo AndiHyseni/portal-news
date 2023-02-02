@@ -1,45 +1,39 @@
 import { Button, Image, Text } from "@mantine/core";
-import { useCounter } from "@mantine/hooks";
 import jwtDecode from "jwt-decode";
-import { useParams } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { Heart } from "tabler-icons-react";
-import { addReaction } from "../../api/administration/administration";
+import { useSavedNews } from "../../hooks/useNews/useSavedNews";
 import { useAddReaction } from "../../hooks/useReactions/useAddReactions";
-import { useReactionsDetails } from "../../hooks/useReactions/useReactionsDetails";
-import {
-  AddReaction,
-  ReactionsDetails,
-} from "../../types/administration/administration";
-import { News } from "../../types/news/news";
+import { useReactions } from "../../hooks/useReactions/useReactions";
+import { News, SavedNewsPayload } from "../../types/news/news";
+import { AddSavedNewsButton } from "../common/AddSavedNewsButton";
 import "../NewsDetailsId/NewsDetailsId.css";
 
 export interface NewsDetailsProps {
   news: News;
-  reactionDetails: ReactionsDetails;
 }
 
-export const NewsDetailsId: React.FC<NewsDetailsProps> = ({
-  news,
-  reactionDetails,
-}) => {
+export const NewsDetailsId: React.FC<NewsDetailsProps> = ({ news }) => {
   const videoDetails: string = news?.video!;
-  const [count1, handlers1] = useCounter(0, { min: 0, max: 10000 });
-  const [count2, handlers2] = useCounter(0, { min: 0, max: 10000 });
-  const [count3, handlers3] = useCounter(0, { min: 0, max: 10000 });
   const addReactionMutation = useAddReaction();
-  const { data } = useReactionsDetails(news.newsId);
+  const { newsId } = useParams();
+  const [savedNews, setSavedNews] = useState<SavedNewsPayload>();
+  const savedNewsMutation = useSavedNews();
+  const { data } = useReactions();
+  const navigate = useNavigate();
 
   var token: any =
     localStorage.getItem("jwt") != null
       ? jwtDecode(localStorage.getItem("jwt")!)
-      : null;
+      : "";
 
   var id: string =
     token != null
       ? token[
           "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
         ]
-      : news.userId;
+      : "";
   const handleSubmit = (reaction: number) => {
     addReactionMutation.mutate({
       newsId: news.newsId,
@@ -69,39 +63,97 @@ export const NewsDetailsId: React.FC<NewsDetailsProps> = ({
           ))}
       </div>
       <div className="savedButton">
-        <Button className="tagsButton">
-          <Heart size={25} strokeWidth={2} color={"white"} />
-        </Button>
+        {news && data && (
+          <AddSavedNewsButton
+            newsId={Number(newsId)}
+            savedNews={savedNews}
+            mutation={savedNewsMutation}
+          />
+        )}
       </div>
-      <div className="reactions">
-        <h1 className="reactionTitle">Cili është reagimi juaj për këtë?</h1>
-        <div className="reactionEmoji">
-          <Text className="counter">{count1}</Text>
-          <Image
-            onClick={() => handleSubmit(1)}
-            src="../../images/happy.png"
-            className="reactionImage"
-            height={150}
-            width={150}
-          />
-          <Text className="counter">{count2}</Text>
-          <Image
-            onClick={() => handleSubmit(2)}
-            src="../../images/sad.png"
-            className="reactionImage"
-            height={150}
-            width={150}
-          />
-          <Text className="counter">{count3}</Text>
-          <Image
-            onClick={() => handleSubmit(3)}
-            src="../../images/angry.jpg"
-            className="reactionImage"
-            height={150}
-            width={150}
-          />
+      {id == null && (
+        <div className="reactions">
+          <h1 className="reactionTitle">Cili është reagimi juaj për këtë?</h1>
+          <div className="reactionEmoji">
+            <Text className="counter">
+              {data?.filter((n) => n.newsId == news.newsId).map((x) => x.happy)}
+            </Text>
+            <Image
+              onClick={() => navigate("/login")}
+              src="../../images/happy.png"
+              className="reactionImage"
+              height={150}
+              width={150}
+            />
+            <Text className="counter">
+              {data?.filter((n) => n.newsId == news.newsId).map((x) => x.sad)}
+            </Text>
+            <Image
+              onClick={() => navigate("/login")}
+              src="../../images/sad.png"
+              className="reactionImage"
+              height={150}
+              width={150}
+            />
+            <Text className="counter">
+              {data?.filter((n) => n.newsId == news.newsId).map((x) => x.angry)}
+            </Text>
+            <Image
+              onClick={() => navigate("/login")}
+              src="../../images/angry.jpg"
+              className="reactionImage"
+              height={150}
+              width={150}
+            />
+          </div>
         </div>
-      </div>
+      )}
+      {id != null && (
+        <div className="reactions">
+          <h1 className="reactionTitle">Cili është reagimi juaj për këtë?</h1>
+          <div className="reactionEmoji">
+            <Text className="counter">
+              {data?.filter((n) => n.newsId == news.newsId).map((x) => x.happy)}
+            </Text>
+            <Image
+              onClick={() => {
+                handleSubmit(1);
+                window.location.reload();
+              }}
+              src="../../images/happy.png"
+              className="reactionImage"
+              height={150}
+              width={150}
+            />
+            <Text className="counter">
+              {data?.filter((n) => n.newsId == news.newsId).map((x) => x.sad)}
+            </Text>
+            <Image
+              onClick={() => {
+                handleSubmit(2);
+                window.location.reload();
+              }}
+              src="../../images/sad.png"
+              className="reactionImage"
+              height={150}
+              width={150}
+            />
+            <Text className="counter">
+              {data?.filter((n) => n.newsId == news.newsId).map((x) => x.angry)}
+            </Text>
+            <Image
+              onClick={() => {
+                handleSubmit(3);
+                window.location.reload();
+              }}
+              src="../../images/angry.jpg"
+              className="reactionImage"
+              height={150}
+              width={150}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
