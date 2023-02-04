@@ -39,6 +39,7 @@ export const EditCategoriesModal: React.FC<EditCategoriesModalProps> = ({
 
   const handleClose = () => {
     onClose();
+    window.location.reload();
   };
 
   const handleSubmit = () => {
@@ -51,6 +52,7 @@ export const EditCategoriesModal: React.FC<EditCategoriesModalProps> = ({
       {
         onSuccess: () => {
           handleClose();
+          window.location.reload();
         },
       }
     );

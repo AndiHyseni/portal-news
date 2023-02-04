@@ -10,7 +10,6 @@ import { AdminReactions } from "../pages/AdminReactions/AdminReactions";
 import { AdminReactionsDetails } from "../pages/AdminReactions/AdminReactionsDetails";
 import { AddUsersPage } from "../pages/AdminUsers/AddUsers";
 import { AdminUsers } from "../pages/AdminUsers/AdminUsers";
-import { EditUsersPage } from "../pages/AdminUsers/EditUsers";
 import { AdminViews } from "../pages/AdminViews/AdminViews";
 import { AdminViewsDetails } from "../pages/AdminViews/AdminViewsDetails";
 import { Homepage } from "../pages/Homepage/Homepage";
@@ -40,7 +39,6 @@ export const Router: React.FC = () => {
         <Route path="/reaction" element={<AdminReactions />} />
         <Route path="/reaction/:newsId" element={<AdminReactionsDetails />} />
         <Route path="/addAdmin" element={<AddUsersPage />} />
-        <Route path="/editUser" element={<EditUsersPage />} />
         <Route path="/category/:categoryId" element={<NewsByCategory />} />
       </Routes>
     </BrowserRouter>

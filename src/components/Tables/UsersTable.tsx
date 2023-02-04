@@ -6,9 +6,14 @@ import { Users } from "../../types/administration/administration";
 export interface TableProps {
   users: Users[];
   onDeleteUsers: (users: Users) => void;
+  onEditUser: (users: Users) => void;
 }
 
-export const UsersTable: React.FC<TableProps> = ({ users, onDeleteUsers }) => {
+export const UsersTable: React.FC<TableProps> = ({
+  users,
+  onDeleteUsers,
+  onEditUser,
+}) => {
   const navigate = useNavigate();
 
   return (
@@ -40,7 +45,7 @@ export const UsersTable: React.FC<TableProps> = ({ users, onDeleteUsers }) => {
             <td>{user.email}</td>
             <td>{user.role}</td>
             <td>
-              <Button onClick={() => navigate(`/editUser`)}>
+              <Button onClick={() => onEditUser(user)}>
                 <Edit size={20} strokeWidth={2} color={"white"} />
               </Button>
             </td>
