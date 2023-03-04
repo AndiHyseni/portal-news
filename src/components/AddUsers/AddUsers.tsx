@@ -18,7 +18,7 @@ export const AddUsers: React.FC = () => {
   const addUserMutation = useAddUser();
   const [visible, { toggle }] = useDisclosure(false);
 
-  const [addRole, setAddRole] = useState<string | null>("");
+  const [addRole, setAddRole] = useState<string | null>("Registered");
 
   const roleOptions = [
     { value: "Admin", label: "Admin" },
@@ -40,6 +40,7 @@ export const AddUsers: React.FC = () => {
     addUserMutation.mutate(
       {
         ...form.values,
+        role: addRole!,
         userId: form.values.userId,
       },
       {

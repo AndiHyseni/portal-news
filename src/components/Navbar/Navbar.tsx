@@ -33,11 +33,13 @@ export const Navbar: React.FC<CategoriesProps> = ({ categories }) => {
       {(!userContext.token ||
         userContext.userRole?.includes(Role.REGISTERED)) && (
         <div style={{ display: "flex" }}>
-          {categories.map((categories, index) => (
-            <NavLink key={index} to={`/category/${categories.categoryId}`}>
-              <div className="navbarItem">{categories.name}</div>
-            </NavLink>
-          ))}
+          {categories
+            .filter((x) => x.showOnline == true)
+            .map((categories, index) => (
+              <NavLink key={index} to={`/category/${categories.categoryId}`}>
+                <div className="navbarItem">{categories.name}</div>
+              </NavLink>
+            ))}
         </div>
       )}
       {token != null && (

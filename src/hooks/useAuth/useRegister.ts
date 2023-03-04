@@ -17,7 +17,6 @@ export const useRegister = () => {
     },
     onSuccess: (data) => {
       endNotification(randomId, i18n.t("Successed"), true);
-      localStorage.setItem("jwt", data.token);
 
       setUserContext(data);
     },

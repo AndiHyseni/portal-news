@@ -46,7 +46,7 @@ export const CreateCategoriesModal: React.FC<CreateCategoriesModalProps> = ({
       {
         ...form.values,
         categoryId: +form.values.categoryId,
-        showOnline: form.values.showOnline === true ? true : false,
+        showOnline: showOnline,
       },
       {
         onSuccess: () => {

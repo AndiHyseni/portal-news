@@ -27,7 +27,7 @@ export const Register: React.FC<RegisterProps> = ({ mutation }) => {
       },
       {
         onSuccess: () => {
-          navigate("/");
+          navigate("/login");
         },
       }
     );

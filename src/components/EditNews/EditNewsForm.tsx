@@ -11,10 +11,12 @@ import {
 } from "@mantine/core";
 import { DatePicker } from "@mantine/dates";
 import { useForm } from "@mantine/form";
+import { AxiosError } from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Label } from "semantic-ui-react";
 import { useCategories } from "../../hooks/useCategories/useCategories";
+import { ApiError, ErrorMessage } from "../../types/auth/ApiError";
 import { Categories } from "../../types/categories/categories";
 import { News } from "../../types/news/news";
 
@@ -30,12 +32,12 @@ export const EditNewsForm: React.FC<NewsFormProps> = ({
   mutation,
 }) => {
   const navigate = useNavigate();
-  //   const createNewsMutation = useCreateNews();
-  const [isFeatured, setIsFeatured] = useState<boolean>(false);
-  const [isDeleted, setIsDeleted] = useState<boolean>(false);
 
-  const [categoryId, setCategoryId] = useState<string | null>("");
+  const [isFeatured, setIsFeatured] = useState<boolean>(news.isFeatured);
+  const [isDeleted, setIsDeleted] = useState<boolean>(news.isDeleted);
 
+  const [categoryId, setCategoryId] = useState<number | null>(news.categoryId);
+  const [newsImage, setNewsImage] = useState<string | ArrayBuffer>(news.image);
   const { data } = useCategories();
 
   const categoryOptions = data
@@ -45,6 +47,8 @@ export const EditNewsForm: React.FC<NewsFormProps> = ({
       }))
     : [];
 
+  const [tags, setTags] = useState([]) as any;
+
   const form = useForm({
     initialValues: {
       newsId: newsId,
@@ -52,8 +56,8 @@ export const EditNewsForm: React.FC<NewsFormProps> = ({
       content: news.content,
       expireDate: news.expireDate,
       image: news.image,
-      isDeleted: news.isDeleted ? true : false,
-      isFeatured: news.isFeatured ? true : false,
+      isDeleted: news.isDeleted,
+      isFeatured: news.isFeatured,
       subTitle: news.subTitle,
       tags: news.tags,
       title: news.title,
@@ -61,16 +65,14 @@ export const EditNewsForm: React.FC<NewsFormProps> = ({
     },
   });
 
-  const [image, setimage] = useState() as any;
-  const [tags, setTags] = useState([]) as any;
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const image = e.target.files![0];
+    const reader = new FileReader();
 
-  const changefile = (event: any) => {
-    let v = event.target.files;
-    let reader = new FileReader();
-    reader.readAsDataURL(v[0]);
-    reader.onload = (e) => {
-      setimage(e.target?.result);
+    reader.onloadend = () => {
+      setNewsImage(String(reader.result));
     };
+    reader.readAsDataURL(image);
   };
 
   function handleKeyDown(e: any) {
@@ -82,32 +84,31 @@ export const EditNewsForm: React.FC<NewsFormProps> = ({
   }
 
   function removeTag(index: any) {
-    setTags({ ...tags.filter((el: any, i: any) => i !== index) });
+    setTags(tags.filter((el: any, i: any) => i !== index));
   }
 
-  const handleSubmit = (News: any) => {
-    News.image = image;
-    News.tags = tags.join(",");
+  const handleSubmit = () => {
     mutation.mutate(
       {
         ...form.values,
-        payload: { ...form.values },
         newsId: news.newsId,
-        categoryId: categoryId ? Number(categoryId) : 0,
-        isDeleted: form.values.isDeleted === true ? true : false,
-        isFeatured: form.values.isFeatured === true ? true : false,
+        categoryId: categoryId,
+        isDeleted: isDeleted,
+        isFeatured: isFeatured,
+        image: newsImage,
+        tags: tags.join(","),
       },
       {
         onSuccess: () => {
           navigate("/news");
         },
-        // onError: (error: AxiosError<ApiError>) => {
-        //   if (
-        //     error.response?.data.errorMessage === ErrorMessage.MORE_CARACTERS
-        //   ) {
-        //     form.setFieldError("title", "error");
-        //   }
-        // },
+        onError: (error: AxiosError<ApiError>) => {
+          if (
+            error.response?.data.errorMessage === ErrorMessage.MORE_CARACTERS
+          ) {
+            form.setFieldError("title", "error");
+          }
+        },
       }
     );
   };
@@ -160,12 +161,12 @@ export const EditNewsForm: React.FC<NewsFormProps> = ({
           <Select
             label="Category"
             placeholder="Category..."
+            defaultValue={String(news.categoryId)}
             data={categoryOptions}
             searchable
             maxDropdownHeight={400}
             required
-            value={categoryId}
-            onChange={(categoryId) => setCategoryId(categoryId)}
+            onChange={(categoryId) => setCategoryId(Number(categoryId))}
           />
           <Switch
             label="is Featured"
@@ -196,14 +197,14 @@ export const EditNewsForm: React.FC<NewsFormProps> = ({
           />
         </div>
         <div className="addNewsImage">
-          <Image src={image} width={650} height={400} />
+          <Image src={String(newsImage)} width={650} height={400} />
           <Card className="addNewsButton">
             <input
               type="file"
               hidden
               style={{ marginTop: "200px" }}
               id="file"
-              onChange={changefile}
+              onChange={handleImageChange}
             />
             <label htmlFor="file" className="btn" style={{ marginTop: "10px" }}>
               <Label content="Upload Image" color="blue" />
@@ -211,7 +212,9 @@ export const EditNewsForm: React.FC<NewsFormProps> = ({
           </Card>
         </div>
         <Group className="addNewsButtons">
-          <Button onClick={() => navigate("/news")}>Cancel</Button>
+          <Button color={"red"} onClick={() => navigate("/news")}>
+            Cancel
+          </Button>
           <Button type="submit">Submit</Button>
         </Group>
       </form>

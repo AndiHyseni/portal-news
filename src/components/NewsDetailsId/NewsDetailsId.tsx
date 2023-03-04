@@ -54,14 +54,16 @@ export const NewsDetailsId: React.FC<NewsDetailsProps> = ({ news }) => {
           dangerouslySetInnerHTML={{ __html: videoDetails }}
         ></div>
       }
-      <div className="tagsDetails">
-        {news?.tags != null &&
-          news?.tags.split(",").map((tag) => (
-            <Button className="tagsButton" key={tag}>
-              {tag}
-            </Button>
-          ))}
-      </div>
+      {news.tags != "" && (
+        <div className="tagsDetails">
+          {news?.tags != null &&
+            news?.tags.split(",").map((tag) => (
+              <Button className="tagsButton" key={tag}>
+                {tag}
+              </Button>
+            ))}
+        </div>
+      )}
       <div className="savedButton">
         {news && data && (
           <AddSavedNewsButton

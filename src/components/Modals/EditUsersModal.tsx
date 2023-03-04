@@ -11,6 +11,7 @@ import { useForm } from "@mantine/form";
 import { useDisclosure } from "@mantine/hooks";
 import { useState } from "react";
 import { Users } from "../../types/administration/administration";
+import { Role } from "../../types/auth/login";
 import "../AddUsers/AddUsers.css";
 
 export interface EditUsersModalProps {
@@ -30,11 +31,11 @@ export const EditUsersModal: React.FC<EditUsersModalProps> = ({
 }) => {
   const [visible, { toggle }] = useDisclosure(false);
 
-  const [addRole, setAddRole] = useState<string | null>("");
+  const [addRole, setAddRole] = useState<string | null>(user.role);
 
   const roleOptions = [
-    { value: "Admin", label: "Admin" },
-    { value: "Registered", label: "Registered" },
+    { value: Role.ADMIN, label: Role.ADMIN },
+    { value: Role.REGISTERED, label: Role.REGISTERED },
   ];
 
   const form = useForm({
@@ -57,6 +58,7 @@ export const EditUsersModal: React.FC<EditUsersModalProps> = ({
     mutation.mutate(
       {
         ...form.values,
+        role: String(addRole!),
         userId: form.values.userId,
       },
       {
@@ -117,12 +119,11 @@ export const EditUsersModal: React.FC<EditUsersModalProps> = ({
             className="addUserElement"
             label="Role"
             placeholder="Role..."
+            defaultValue={user.role}
             data={roleOptions}
-            {...form.getInputProps("role")}
             searchable
             maxDropdownHeight={400}
             required
-            value={addRole}
             onChange={(addRole) => setAddRole(addRole)}
           />
           <Group position="right" mt="md">

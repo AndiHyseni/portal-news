@@ -28,11 +28,13 @@ export const Footer: React.FC<CategoriesProps> = ({ categories }) => {
           <div className="footerFirstItem">
             <b>Udhëzim</b>
           </div>
-          {categories.map((categories, index) => (
-            <NavLink key={index} to={`/category/${categories.categoryId}`}>
-              <div className="footerItem">{categories.name}</div>
-            </NavLink>
-          ))}
+          {categories
+            .filter((x) => x.showOnline == true)
+            .map((categories, index) => (
+              <NavLink key={index} to={`/category/${categories.categoryId}`}>
+                <div className="footerItem">{categories.name}</div>
+              </NavLink>
+            ))}
         </div>
       </div>
       <div className="hr-footer">

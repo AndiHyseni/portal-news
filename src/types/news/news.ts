@@ -4,8 +4,8 @@ export interface News {
   content: string;
   expireDate: string;
   image: string;
-  isDeleted: Boolean;
-  isFeatured: Boolean;
+  isDeleted: boolean;
+  isFeatured: boolean;
   newsId: number;
   subTitle: string;
   tags: string;

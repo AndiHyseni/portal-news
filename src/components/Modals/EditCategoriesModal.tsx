@@ -26,14 +26,14 @@ export const EditCategoriesModal: React.FC<EditCategoriesModalProps> = ({
   onClose,
   mutation,
 }) => {
-  const [showOnline, setShowOnline] = useState<boolean>(false);
+  const [showOnline, setShowOnline] = useState<boolean>(categories.showOnline);
 
   const form = useForm({
     initialValues: {
       categoryId: categories.categoryId,
       name: categories.name,
       description: categories.description,
-      showOnline: categories.showOnline == true ? true : false,
+      showOnline: categories.showOnline,
     },
   });
 
@@ -47,7 +47,7 @@ export const EditCategoriesModal: React.FC<EditCategoriesModalProps> = ({
       {
         ...form.values,
         categoryId: categories.categoryId,
-        showOnline: form.values.showOnline === true ? true : false,
+        showOnline: showOnline,
       },
       {
         onSuccess: () => {

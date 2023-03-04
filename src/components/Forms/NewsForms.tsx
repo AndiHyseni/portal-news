@@ -91,8 +91,8 @@ export const NewsForms: React.FC<NewsFormProps> = (newsId) => {
         ...form.values,
         newsId: +form.values.newsId,
         categoryId: categoryId ? Number(categoryId) : 0,
-        isDeleted: form.values.isDeleted === true ? true : false,
-        isFeatured: form.values.isFeatured === true ? true : false,
+        isFeatured: isFeatured,
+        isDeleted: isDeleted,
       },
       {
         onSuccess: () => {
