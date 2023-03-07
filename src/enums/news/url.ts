@@ -12,3 +12,7 @@ export enum SAVED_NEWS {
   GET_SAVED = "getSaved",
   DELETE_SAVED = "deleteSaved",
 }
+
+export enum TAGS {
+  TAGS = "tags",
+}

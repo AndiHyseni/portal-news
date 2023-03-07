@@ -1,5 +1,5 @@
 import { BaseUrl } from "../../enums/baseUrl";
-import { CREATE_NEWS, NEWS, SAVED_NEWS } from "../../enums/news/url";
+import { CREATE_NEWS, NEWS, SAVED_NEWS, TAGS } from "../../enums/news/url";
 import {
   CreateNewsPayload,
   News,
@@ -60,6 +60,13 @@ export const deleteSavedNews = async (newsId: number): Promise<void> => {
   const { data } = await axiosInstance.post(
     `${BaseUrl.DEVELOPMENT}/${SAVED_NEWS.DELETE_SAVED}`,
     newsId
+  );
+  return data;
+};
+
+export const getNewsByTags = async (tags: string): Promise<News[]> => {
+  const { data } = await axiosInstance.get(
+    `${BaseUrl.DEVELOPMENT}/${TAGS.TAGS}/${tags}`
   );
   return data;
 };

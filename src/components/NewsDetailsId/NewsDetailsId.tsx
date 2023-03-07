@@ -1,8 +1,7 @@
 import { Button, Image, Text } from "@mantine/core";
 import jwtDecode from "jwt-decode";
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { Heart } from "tabler-icons-react";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useSavedNews } from "../../hooks/useNews/useSavedNews";
 import { useAddReaction } from "../../hooks/useReactions/useAddReactions";
 import { useReactions } from "../../hooks/useReactions/useReactions";
@@ -57,11 +56,16 @@ export const NewsDetailsId: React.FC<NewsDetailsProps> = ({ news }) => {
       {news.tags != "" && (
         <div className="tagsDetails">
           {news?.tags != null &&
-            news?.tags.split(",").map((tag) => (
-              <Button className="tagsButton" key={tag}>
-                {tag}
-              </Button>
-            ))}
+            news?.tags
+              .split(",")
+              .filter((x) => x != "")
+              .map((tag, index) => (
+                <NavLink key={index} to={`/tag/${tag}`}>
+                  <Button className="tagsButton" key={tag}>
+                    {tag}
+                  </Button>
+                </NavLink>
+              ))}
         </div>
       )}
       <div className="savedButton">

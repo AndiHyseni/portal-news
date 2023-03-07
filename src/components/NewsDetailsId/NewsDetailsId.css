@@ -35,6 +35,7 @@
 
 .tagsDetails {
   width: 100%;
+  display: flex;
 }
 
 .tagsButton {

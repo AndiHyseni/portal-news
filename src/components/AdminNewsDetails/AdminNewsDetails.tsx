@@ -1,6 +1,6 @@
 import { Button, Image } from "@mantine/core";
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { Edit, Heart, Trash } from "tabler-icons-react";
 import { useSavedNews } from "../../hooks/useNews/useSavedNews";
 import { useUsers } from "../../hooks/useUsers/useUsers";
@@ -38,11 +38,17 @@ export const AdminNewsDetailsC: React.FC<NewsDetailsProps> = ({
       }
       {news.tags != "" && (
         <div className="tagsDetails">
-          {news?.tags.split(",").map((tag) => (
-            <Button className="tagsButton" key={tag}>
-              {tag}
-            </Button>
-          ))}
+          {news?.tags != null &&
+            news?.tags
+              .split(",")
+              .filter((x) => x != "")
+              .map((tag, index) => (
+                <NavLink key={index} to={`/tag/${tag}`}>
+                  <Button className="tagsButton" key={tag}>
+                    {tag}
+                  </Button>
+                </NavLink>
+              ))}
         </div>
       )}
       <div className="detailsButton">
