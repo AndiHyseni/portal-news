@@ -34,6 +34,46 @@ export const AddUsers: React.FC = () => {
       email: "",
       password: "",
     },
+    validate: {
+      userName: (value) => {
+        if (!value) {
+          return "Name is required";
+        }
+        return null;
+      },
+      email: (value) => {
+        if (!value) {
+          return "Email is required";
+        }
+        if (!/^\S+@\S+$/.test(value)) {
+          return "Invalid email";
+        }
+        return null;
+      },
+      password: (value) => {
+        if (!value) {
+          return "Password is required";
+        }
+        if (value.length < 8) {
+          return "Password must be at least 8 characters";
+        }
+        if (!/[A-Z]/.test(value)) {
+          return "Password must contain at least one uppercase letter";
+        }
+        if (!/[a-z]/.test(value)) {
+          return "Password must contain at least one lowercase letter";
+        }
+        if (!/\d/.test(value)) {
+          return "Password must contain at least one number";
+        }
+        if (!/[$@#!%&*?]/.test(value)) {
+          return "Password must contain at least one special character";
+        }
+        return null;
+      },
+      confirmPassword: (value, values) =>
+        value !== values.password ? "Passwords did not match" : null,
+    },
   });
 
   const handleSubmit = () => {
@@ -47,13 +87,6 @@ export const AddUsers: React.FC = () => {
         onSuccess: () => {
           navigate("/users");
         },
-        // onError: (error: AxiosError<ApiError>) => {
-        //   if (
-        //     error.response?.data.errorMessage === ErrorMessage.MORE_CARACTERS
-        //   ) {
-        //     form.setFieldError("title", "error");
-        //   }
-        // },
       }
     );
   };
@@ -66,7 +99,6 @@ export const AddUsers: React.FC = () => {
         <TextInput
           className="addUserElement"
           size="sm"
-          required
           label="Name"
           placeholder="Name..."
           {...form.getInputProps("userName")}
@@ -74,7 +106,6 @@ export const AddUsers: React.FC = () => {
         <TextInput
           className="addUserElement"
           size="sm"
-          required
           label="Email"
           placeholder="Email..."
           {...form.getInputProps("email")}
@@ -82,7 +113,6 @@ export const AddUsers: React.FC = () => {
         <PasswordInput
           className="addUserElement"
           {...form.getInputProps("password")}
-          required
           label="Password"
           placeholder="Enter Password..."
           visible={visible}
@@ -91,7 +121,6 @@ export const AddUsers: React.FC = () => {
         <PasswordInput
           className="addUserElement"
           {...form.getInputProps("confirmPassword")}
-          required
           label="Confirm password"
           placeholder="Confirm Password..."
           visible={visible}
@@ -105,7 +134,6 @@ export const AddUsers: React.FC = () => {
           {...form.getInputProps("role")}
           searchable
           maxDropdownHeight={400}
-          required
           value={addRole}
           onChange={(addRole) => setAddRole(addRole)}
         />

@@ -18,6 +18,40 @@ export const Register: React.FC<RegisterProps> = ({ mutation }) => {
       password: "",
       confirmPassword: "",
     },
+    validate: {
+      email: (value) => {
+        if (!value) {
+          return "Email is required";
+        }
+        if (!/^\S+@\S+$/.test(value)) {
+          return "Invalid email";
+        }
+        return null;
+      },
+      password: (value) => {
+        if (!value) {
+          return "Password is required";
+        }
+        if (value.length < 8) {
+          return "Password must be at least 8 characters";
+        }
+        if (!/[A-Z]/.test(value)) {
+          return "Password must contain at least one uppercase letter";
+        }
+        if (!/[a-z]/.test(value)) {
+          return "Password must contain at least one lowercase letter";
+        }
+        if (!/\d/.test(value)) {
+          return "Password must contain at least one number";
+        }
+        if (!/[$@#!%&*?]/.test(value)) {
+          return "Password must contain at least one special character";
+        }
+        return null;
+      },
+      confirmPassword: (value, values) =>
+        value !== values.password ? "Passwords did not match" : null,
+    },
   });
 
   const handleSubmit = () => {

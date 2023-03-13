@@ -63,6 +63,38 @@ export const EditNewsForm: React.FC<NewsFormProps> = ({
       title: news.title,
       video: news.video,
     },
+    validate: {
+      title: (value) => {
+        if (!value) {
+          return "Title is required";
+        }
+        return null;
+      },
+      subTitle: (value) => {
+        if (!value) {
+          return "Subtitle is required";
+        }
+        return null;
+      },
+      content: (value) => {
+        if (!value) {
+          return "Content is required";
+        }
+        return null;
+      },
+      expireDate: (value) => {
+        if (!value) {
+          return "Expire date is required";
+        }
+        return null;
+      },
+      categoryId: (value) => {
+        if (!value || value === 0) {
+          return "Category is required";
+        }
+        return null;
+      },
+    },
   });
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -121,7 +153,6 @@ export const EditNewsForm: React.FC<NewsFormProps> = ({
         <TextInput
           className="addNewsElement"
           size="sm"
-          required
           label="Title"
           placeholder="News title..."
           {...form.getInputProps("title")}
@@ -129,7 +160,6 @@ export const EditNewsForm: React.FC<NewsFormProps> = ({
         <TextInput
           className="addNewsElement"
           size="sm"
-          required
           label="Subtitle"
           placeholder="News subtitle..."
           {...form.getInputProps("subTitle")}
@@ -137,7 +167,6 @@ export const EditNewsForm: React.FC<NewsFormProps> = ({
         <Textarea
           className="addNewsElement"
           size="sm"
-          required
           label="Content"
           placeholder="News content..."
           {...form.getInputProps("content")}
@@ -154,7 +183,6 @@ export const EditNewsForm: React.FC<NewsFormProps> = ({
             size="sm"
             placeholder="Expire date..."
             label="Expire Date"
-            required
             withAsterisk
             {...form.getInputProps("expireDate")}
           />
@@ -165,8 +193,8 @@ export const EditNewsForm: React.FC<NewsFormProps> = ({
             data={categoryOptions}
             searchable
             maxDropdownHeight={400}
-            required
             onChange={(categoryId) => setCategoryId(Number(categoryId))}
+            error={form.errors.categoryId}
           />
           <Switch
             label="is Featured"

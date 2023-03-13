@@ -35,6 +35,23 @@ export const CreateCategoriesModal: React.FC<CreateCategoriesModalProps> = ({
       description: "",
       showOnline: false,
     },
+    validate: {
+      name: (value) => {
+        if (!value) {
+          return "Name is required";
+        }
+        return null;
+      },
+      description: (value) => {
+        if (!value) {
+          return "Description is required";
+        }
+        if (value.length < 20) {
+          return "Description must have at least 20 characters";
+        }
+        return null;
+      },
+    },
   });
 
   const handleClose = () => {
@@ -42,6 +59,8 @@ export const CreateCategoriesModal: React.FC<CreateCategoriesModalProps> = ({
   };
 
   const handleSubmit = () => {
+    const errors = form.validate();
+
     createCategoriesMutation.mutate(
       {
         ...form.values,
@@ -74,6 +93,7 @@ export const CreateCategoriesModal: React.FC<CreateCategoriesModalProps> = ({
             label="Name"
             placeholder="Name..."
             {...form.getInputProps("name")}
+            error={form.errors.name}
           />
           <Textarea
             className="createCategoriesElement"
@@ -82,6 +102,7 @@ export const CreateCategoriesModal: React.FC<CreateCategoriesModalProps> = ({
             label="Description"
             placeholder="Description..."
             {...form.getInputProps("description")}
+            error={form.errors.description}
           />
           <Switch
             label="Show Online"

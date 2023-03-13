@@ -35,6 +35,21 @@ export const EditCategoriesModal: React.FC<EditCategoriesModalProps> = ({
       description: categories.description,
       showOnline: categories.showOnline,
     },
+    validate: {
+      name: (value) => {
+        if (!value) {
+          return "Name is required";
+        }
+      },
+      description: (value) => {
+        if (!value) {
+          return "Description is required";
+        }
+        if (value.length < 20) {
+          return "Description must have at least 20 characters";
+        }
+      },
+    },
   });
 
   const handleClose = () => {
@@ -43,6 +58,8 @@ export const EditCategoriesModal: React.FC<EditCategoriesModalProps> = ({
   };
 
   const handleSubmit = () => {
+    const errors = form.validate();
+
     mutation.mutate(
       {
         ...form.values,

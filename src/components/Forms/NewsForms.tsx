@@ -57,6 +57,38 @@ export const NewsForms: React.FC<NewsFormProps> = (newsId) => {
       title: "",
       video: "",
     },
+    validate: {
+      title: (value) => {
+        if (!value) {
+          return "Title is required";
+        }
+        return null;
+      },
+      subTitle: (value) => {
+        if (!value) {
+          return "Subtitle is required";
+        }
+        return null;
+      },
+      content: (value) => {
+        if (!value) {
+          return "Content is required";
+        }
+        return null;
+      },
+      expireDate: (value) => {
+        if (!value) {
+          return "Expire date is required";
+        }
+        return null;
+      },
+      categoryId: (value) => {
+        if (!value || value === 0) {
+          return "Category is required";
+        }
+        return null;
+      },
+    },
   });
 
   const [image, setimage] = useState() as any;
@@ -98,13 +130,6 @@ export const NewsForms: React.FC<NewsFormProps> = (newsId) => {
         onSuccess: () => {
           navigate("/news");
         },
-        // onError: (error: AxiosError<ApiError>) => {
-        //   if (
-        //     error.response?.data.errorMessage === ErrorMessage.MORE_CARACTERS
-        //   ) {
-        //     form.setFieldError("title", "error");
-        //   }
-        // },
       }
     );
   };
@@ -117,7 +142,6 @@ export const NewsForms: React.FC<NewsFormProps> = (newsId) => {
         <TextInput
           className="addNewsElement"
           size="sm"
-          required
           label="Title"
           placeholder="News title..."
           {...form.getInputProps("title")}
@@ -125,7 +149,6 @@ export const NewsForms: React.FC<NewsFormProps> = (newsId) => {
         <TextInput
           className="addNewsElement"
           size="sm"
-          required
           label="Subtitle"
           placeholder="News subtitle..."
           {...form.getInputProps("subTitle")}
@@ -133,7 +156,6 @@ export const NewsForms: React.FC<NewsFormProps> = (newsId) => {
         <Textarea
           className="addNewsElement"
           size="sm"
-          required
           label="Content"
           placeholder="News content..."
           {...form.getInputProps("content")}
@@ -150,7 +172,6 @@ export const NewsForms: React.FC<NewsFormProps> = (newsId) => {
             size="sm"
             placeholder="Expire date..."
             label="Expire Date"
-            required
             withAsterisk
             {...form.getInputProps("expireDate")}
           />
@@ -160,9 +181,9 @@ export const NewsForms: React.FC<NewsFormProps> = (newsId) => {
             data={categoryOptions}
             searchable
             maxDropdownHeight={400}
-            required
             value={categoryId}
             onChange={(categoryId) => setCategoryId(categoryId)}
+            error={form.errors.categoryId}
           />
           <Switch
             label="is Featured"
