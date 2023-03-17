@@ -3,13 +3,39 @@ import { Button, Image } from "@mantine/core";
 import { News } from "../../types/news/news";
 import "../MostWatchedNews/MostWatchedNews.css";
 import { Carousel } from "@mantine/carousel";
+import { AddViewModel } from "../../types/administration/administration";
+import jwtDecode from "jwt-decode";
+import { addViews } from "../../api/administration/administration";
 
 export interface NewsProps {
   mostwatched: News[];
 }
 
+var token: any =
+  localStorage.getItem("jwt") != null
+    ? jwtDecode(localStorage.getItem("jwt")!)
+    : "";
+
+var id: string =
+  token != null
+    ? token[
+        "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+      ]
+    : "";
+
 export const MostWatchedNews: React.FC<NewsProps> = ({ mostwatched }) => {
   const navigate = useNavigate();
+
+  const addView = (newsId: number) => {
+    const model: AddViewModel = {
+      userId: id,
+      newsId: newsId,
+      fingerPrintId: "",
+      watchId: 2,
+    };
+    addViews(model);
+  };
+
   return (
     <div className="mostwatchedpage">
       <h1 className="mostwatched">Më të shikuarat</h1>
@@ -32,6 +58,7 @@ export const MostWatchedNews: React.FC<NewsProps> = ({ mostwatched }) => {
                     <Button
                       className="readMoreOnMostWatched"
                       onClick={() => {
+                        addView(news.newsId);
                         navigate(`/news/${news.newsId}`);
                       }}
                     >

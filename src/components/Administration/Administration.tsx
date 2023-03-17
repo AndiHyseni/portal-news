@@ -7,6 +7,7 @@ export interface AdministrationProps {
 }
 
 export const Administration: React.FC<AdministrationProps> = ({ raport }) => {
+  console.log(raport);
   return (
     <div className="dashboard">
       <div className="raports">

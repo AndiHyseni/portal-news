@@ -2,6 +2,8 @@ import { Button, Image, PasswordInput, Stack, TextInput } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { useForm } from "@mantine/form";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../Login/Login.css";
 
 export interface LoginProps {
@@ -51,20 +53,17 @@ export const Login: React.FC<LoginProps> = ({ mutation }) => {
     },
   });
 
-  const handleSubmit = () => {
-    mutation.mutate(
-      {
+  const handleSubmit = async () => {
+    try {
+      await mutation.mutateAsync({
         ...form.values,
-      },
-      {
-        onSuccess: () => {
-          navigate("/");
-        },
-        onError: () => {
-          form.setErrors({ password: "Incorrect password" });
-        },
-      }
-    );
+      });
+      navigate("/");
+      toast.success("Login successful", { autoClose: 2000 });
+    } catch (error) {
+      form.setErrors({ password: "Incorrect password" });
+      toast.error("Incorrect password", { autoClose: 2000 });
+    }
   };
 
   return (

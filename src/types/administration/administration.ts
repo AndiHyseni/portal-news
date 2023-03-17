@@ -33,6 +33,13 @@ export interface ViewsDetails {
   watchedOn: string;
 }
 
+export interface AddViewModel {
+  fingerPrintId: string;
+  newsId: number;
+  userId: string;
+  watchId: number;
+}
+
 export interface Reaction {
   angry: number;
   happy: number;

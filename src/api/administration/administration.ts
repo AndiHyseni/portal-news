@@ -9,6 +9,7 @@ import { BaseUrl } from "../../enums/baseUrl";
 import {
   AddAdmin,
   AddReaction,
+  AddViewModel,
   EditAdmin,
   Rapport,
   Reaction,
@@ -101,5 +102,14 @@ export const addReaction = async (payload: AddReaction): Promise<number> => {
     `${BaseUrl.DEVELOPMENT}/${REACTION.GET_ADD_REACTION}`,
     payload
   );
+  return data;
+};
+
+export const addViews = async (payload: AddViewModel): Promise<void> => {
+  const { data } = await axiosInstance.post(
+    `${BaseUrl.DEVELOPMENT}/addView`,
+    payload
+  );
+
   return data;
 };

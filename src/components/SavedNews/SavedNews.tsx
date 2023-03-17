@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import { UserContext } from "../../contexes/UserContext";
 import { Role } from "../../types/auth/login";
+import { AddViewModel } from "../../types/administration/administration";
+import { addViews } from "../../api/administration/administration";
 
 export interface SavedNewsPageProps {
   savedNews: SavedNewsPage[];
@@ -27,6 +29,23 @@ export const SavedNewsC: React.FC<SavedNewsPageProps> = ({
       ? token["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]
       : "";
 
+  var id: string =
+    token != null
+      ? token[
+          "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+        ]
+      : "";
+
+  const addView = (newsId: number) => {
+    const model: AddViewModel = {
+      userId: id,
+      newsId: newsId,
+      fingerPrintId: "",
+      watchId: 2,
+    };
+    addViews(model);
+  };
+
   return (
     <>
       {savedNews?.map((news, index) => (
@@ -38,7 +57,11 @@ export const SavedNewsC: React.FC<SavedNewsPageProps> = ({
             </div>
             <div className="savedNewsButtons">
               {role == "Registered" && (
-                <Button component={Link} to={`/news/${news.newsId}`}>
+                <Button
+                  component={Link}
+                  to={`/news/${news.newsId}`}
+                  onClick={() => addView(news.newsId)}
+                >
                   Read more
                 </Button>
               )}
