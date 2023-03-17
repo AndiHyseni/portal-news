@@ -79,7 +79,7 @@ export const NewsDetailsId: React.FC<NewsDetailsProps> = ({ news }) => {
       </div>
       {id == null && (
         <div className="reactions">
-          <h1 className="reactionTitle">Cili është reagimi juaj për këtë?</h1>
+          <h1 className="reactionTitle">Cili është vlerësimi juaj për këtë?</h1>
           <div className="reactionEmoji">
             <Text className="counter">
               {data?.filter((n) => n.newsId == news.newsId).map((x) => x.happy)}
@@ -116,7 +116,7 @@ export const NewsDetailsId: React.FC<NewsDetailsProps> = ({ news }) => {
       )}
       {id != null && (
         <div className="reactions">
-          <h1 className="reactionTitle">Cili është reagimi juaj për këtë?</h1>
+          <h1 className="reactionTitle">Cili është vlerësimi juaj për këtë?</h1>
           <div className="reactionEmoji">
             <Text className="counter">
               {data?.filter((n) => n.newsId == news.newsId).map((x) => x.happy)}

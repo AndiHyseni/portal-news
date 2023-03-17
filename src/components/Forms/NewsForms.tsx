@@ -10,13 +10,11 @@ import {
   TextInput,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 import { DatePicker } from "@mantine/dates";
 import { useCategories } from "../../hooks/useCategories/useCategories";
 import { Categories } from "../../types/categories/categories";
 import { useState } from "react";
-import { ApiError, ErrorMessage } from "../../types/auth/ApiError";
 import { useCreateNews } from "../../hooks/useCreateNews/useCreateNews";
 import "../Forms/NewsForms.css";
 import React from "react";
@@ -79,12 +77,6 @@ export const NewsForms: React.FC<NewsFormProps> = (newsId) => {
       expireDate: (value) => {
         if (!value) {
           return "Expire date is required";
-        }
-        return null;
-      },
-      categoryId: (value) => {
-        if (!value || value === 0) {
-          return "Category is required";
         }
         return null;
       },
@@ -183,7 +175,6 @@ export const NewsForms: React.FC<NewsFormProps> = (newsId) => {
             maxDropdownHeight={400}
             value={categoryId}
             onChange={(categoryId) => setCategoryId(categoryId)}
-            error={form.errors.categoryId}
           />
           <Switch
             label="is Featured"
