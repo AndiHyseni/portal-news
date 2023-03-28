@@ -10,7 +10,7 @@
 
 .sitediv {
   display: flex;
-  width: 60%;
+  width: 95%;
   background-color: white;
   border: 1px solid #dee2e6;
 }
@@ -54,4 +54,34 @@
   align-items: center;
   cursor: pointer;
   contain: strict;
+}
+
+.divReklama {
+  display: flex;
+  flex-direction: column;
+}
+
+.divRead {
+  display: flex;
+}
+
+.selectList {
+  display: flex;
+  justify-content: space-between;
+  width: 21%;
+  margin-bottom: 15px;
+}
+
+#mantine-r1-label {
+  font-size: 20px;
+  color: #26145c;
+}
+
+.button-container {
+  align-self: end;
+  margin: 10px 40px;
+}
+
+.mantine-8nr514 {
+  background-color: #26145c;
 }

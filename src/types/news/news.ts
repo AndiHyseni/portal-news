@@ -11,6 +11,7 @@ export interface News {
   tags: string;
   title: string;
   video: string;
+  numberOfClicks: number;
 }
 
 export interface CreateNewsPayload {
