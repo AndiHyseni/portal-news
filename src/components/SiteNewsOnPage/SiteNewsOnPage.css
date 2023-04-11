@@ -4,7 +4,7 @@
 }
 
 .fokus {
-  font-size: 20px;
+  font-size: 30px;
   color: #26145c;
 }
 
@@ -80,8 +80,4 @@
 .button-container {
   align-self: end;
   margin: 10px 40px;
-}
-
-.mantine-8nr514 {
-  background-color: #26145c;
 }

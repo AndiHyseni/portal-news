@@ -34,3 +34,14 @@
 .loginpassword {
   padding-bottom: 20px;
 }
+
+.forgotPass {
+  color: black;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.forgotPass:hover {
+  color: #26145c;
+}

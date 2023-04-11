@@ -135,7 +135,7 @@ export const SiteNewsOnPage: React.FC<NewsProps> = ({
             </>
           </div>
           <div className="button-container">
-            <Button onClick={toggleShowAllNews}>
+            <Button onClick={toggleShowAllNews} color={"indigo"}>
               {showAllNews ? "Show Less" : "Show More"}
             </Button>
           </div>

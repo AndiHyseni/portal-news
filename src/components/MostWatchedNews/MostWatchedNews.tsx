@@ -26,6 +26,10 @@ var id: string =
 export const MostWatchedNews: React.FC<NewsProps> = ({ mostwatched }) => {
   const navigate = useNavigate();
 
+  const sortedMostWatched = [...mostwatched].sort(
+    (a, b) => b.numberOfClicks - a.numberOfClicks
+  );
+
   const addView = (newsId: number) => {
     const model: AddViewModel = {
       userId: id,
@@ -48,7 +52,7 @@ export const MostWatchedNews: React.FC<NewsProps> = ({ mostwatched }) => {
           align="start"
           slidesToScroll={1}
         >
-          {mostwatched.map((news, index) => (
+          {sortedMostWatched.map((news, index) => (
             <>
               <Carousel.Slide>
                 <div key={index} className="mostwatcheddiv">

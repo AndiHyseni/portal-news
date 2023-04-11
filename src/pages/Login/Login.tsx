@@ -1,7 +1,7 @@
 import { Button, Image, PasswordInput, Stack, TextInput } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { useForm } from "@mantine/form";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../Login/Login.css";
@@ -93,6 +93,9 @@ export const Login: React.FC<LoginProps> = ({ mutation }) => {
             visible={visible}
             onVisibilityChange={toggle}
           />
+          <NavLink to="/forgot-password" className="forgotPass">
+            Forgot Password?
+          </NavLink>
           <Button className="loginButton" type="submit">
             Login
           </Button>

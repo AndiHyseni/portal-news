@@ -12,6 +12,9 @@ import { AddUsersPage } from "../pages/AdminUsers/AddUsers";
 import { AdminUsers } from "../pages/AdminUsers/AdminUsers";
 import { AdminViews } from "../pages/AdminViews/AdminViews";
 import { AdminViewsDetails } from "../pages/AdminViews/AdminViewsDetails";
+import { Configuration } from "../pages/Configuration/Configuration";
+import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
+import ResetPassword from "../pages/ForgotPassword/ResetPassword";
 import { Homepage } from "../pages/Homepage/Homepage";
 import { NewsByCategory } from "../pages/NewsByCategory/NewsByCategory";
 import { NewsByTags } from "../pages/NewsByTags/NewsByTags";
@@ -42,6 +45,9 @@ export const Router: React.FC = () => {
         <Route path="/addAdmin" element={<AddUsersPage />} />
         <Route path="/category/:categoryId" element={<NewsByCategory />} />
         <Route path="/tag/:tags" element={<NewsByTags />} />
+        <Route path="/configuration" element={<Configuration />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
       </Routes>
     </BrowserRouter>
   );

@@ -220,7 +220,9 @@ export const NewsForms: React.FC<NewsFormProps> = (newsId) => {
           </Card>
         </div>
         <Group className="addNewsButtons">
-          <Button onClick={() => navigate("/news")}>Cancel</Button>
+          <Button color={"red"} onClick={() => navigate("/news")}>
+            Cancel
+          </Button>
           <Button type="submit">Submit</Button>
         </Group>
       </form>

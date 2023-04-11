@@ -96,10 +96,10 @@ export const Sidebar: React.FC = () => {
               <ArrowBarToRight size={25} strokeWidth={2} color={"white"} />
               <h1 className="sidebarItems">News</h1>
             </NavLink>
-            <li className="sidebarList">
+            <NavLink to="/configuration" className="sidebarList">
               <ArrowBarToRight size={25} strokeWidth={2} color={"white"} />
               <h1 className="sidebarItems">Configuration</h1>
-            </li>
+            </NavLink>
             <NavLink to="/users" className="sidebarList">
               <ArrowBarToRight size={25} strokeWidth={2} color={"white"} />
               <h1 className="sidebarItems">Users</h1>
@@ -112,10 +112,6 @@ export const Sidebar: React.FC = () => {
               <ArrowBarToRight size={25} strokeWidth={2} color={"white"} />
               <h1 className="sidebarItems">Reactions</h1>
             </NavLink>
-            <li className="sidebarList">
-              <ArrowBarToRight size={25} strokeWidth={2} color={"white"} />
-              <h1 className="sidebarItems">Raports</h1>
-            </li>
           </ul>
         </div>
       )}

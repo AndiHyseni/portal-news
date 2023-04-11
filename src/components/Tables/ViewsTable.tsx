@@ -9,6 +9,10 @@ export interface TableProps {
 export const ViewsTable: React.FC<TableProps> = ({ views }) => {
   const navigate = useNavigate();
 
+  const sortedMostWatched = [...views].sort(
+    (a, b) => b.nrOfClicks - a.nrOfClicks
+  );
+
   return (
     <Table
       data-testid="views-table"
@@ -29,7 +33,7 @@ export const ViewsTable: React.FC<TableProps> = ({ views }) => {
         </tr>
       </thead>
       <tbody>
-        {views.map((views, index) => (
+        {sortedMostWatched.map((views, index) => (
           <tr key={index}>
             <td>{views.id}</td>
             <td>{views.newsTitle}</td>
