@@ -1,12 +1,10 @@
-import { Fragment, useContext } from "react";
+import { Fragment } from "react";
 import { SavedNewsPage } from "../../types/news/news";
 import "../../pages/SavedNews/SavedNews.css";
 import { Button, Image } from "@mantine/core";
 import { Trash } from "tabler-icons-react";
 import { Link } from "react-router-dom";
 import jwtDecode from "jwt-decode";
-import { UserContext } from "../../contexes/UserContext";
-import { Role } from "../../types/auth/login";
 import { AddViewModel } from "../../types/administration/administration";
 import { addViews } from "../../api/administration/administration";
 

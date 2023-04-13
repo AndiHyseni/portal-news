@@ -2,18 +2,20 @@ import "../Footer/Footer.css";
 import { Image } from "@mantine/core";
 import { Link, NavLink } from "react-router-dom";
 import { Categories } from "../../types/categories/categories";
+import { useConfiguration } from "../../hooks/useConfiguration/useConfiguration";
 
 export interface CategoriesProps {
   categories: Categories[];
 }
 
 export const Footer: React.FC<CategoriesProps> = ({ categories }) => {
+  const { data } = useConfiguration();
   return (
     <div className="footer">
       <div style={{ display: "flex" }}>
         <div className="column1">
           <Link className="footerImage" to="/">
-            <Image src="../images/PN.png" height={100} width={100} />
+            <Image src={data?.footerLogo} height={100} width={100} />
           </Link>
           <p>
             Ky portal mirëmbahet nga kompania "Portal News". Materialet dhe

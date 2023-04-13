@@ -21,3 +21,7 @@ export enum REACTION {
 export enum EDITUSER {
   EDIT_USER = "editUser",
 }
+
+export enum CONFIGURATION {
+  NEWS_CONFIG = "NewsConfig",
+}

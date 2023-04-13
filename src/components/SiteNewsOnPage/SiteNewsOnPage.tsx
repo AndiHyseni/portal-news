@@ -73,10 +73,10 @@ export const SiteNewsOnPage: React.FC<NewsProps> = ({
     <div className="sitepage">
       <div>
         <h1 className="fokus">Në Fokus</h1>
-        <div>
+        <div className="selectLabel">
+          <p className="Shiko">Shiko:</p>
           <Select
             className="selectList"
-            label="Shiko:"
             value={sortOption}
             onChange={(value) => setSortOption(value as SortOption)}
             data={[

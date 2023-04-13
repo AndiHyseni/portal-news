@@ -1,4 +1,5 @@
 import {
+  CONFIGURATION,
   EDITUSER,
   RAPPORT,
   REACTION,
@@ -10,6 +11,7 @@ import {
   AddAdmin,
   AddReaction,
   AddViewModel,
+  Configuration,
   EditAdmin,
   Rapport,
   Reaction,
@@ -111,5 +113,12 @@ export const addViews = async (payload: AddViewModel): Promise<void> => {
     payload
   );
 
+  return data;
+};
+
+export const getNewsConfig = async (): Promise<Configuration> => {
+  const { data } = await axiosInstance.get(
+    `${BaseUrl.DEVELOPMENT}/${CONFIGURATION.NEWS_CONFIG}`
+  );
   return data;
 };

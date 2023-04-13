@@ -93,3 +93,11 @@ export interface EditAdmin {
   userId: string;
   userName: string;
 }
+
+export interface Configuration {
+  newsConfigId: number;
+  footerLogo: string;
+  headerLogo: string;
+  showFeatured: boolean;
+  showMostWached: boolean;
+}

@@ -6,6 +6,7 @@ import { Carousel } from "@mantine/carousel";
 import { AddViewModel } from "../../types/administration/administration";
 import jwtDecode from "jwt-decode";
 import { addViews } from "../../api/administration/administration";
+import { useConfiguration } from "../../hooks/useConfiguration/useConfiguration";
 
 export interface NewsProps {
   mostwatched: News[];
@@ -25,6 +26,7 @@ var id: string =
 
 export const MostWatchedNews: React.FC<NewsProps> = ({ mostwatched }) => {
   const navigate = useNavigate();
+  const { data } = useConfiguration();
 
   const sortedMostWatched = [...mostwatched].sort(
     (a, b) => b.numberOfClicks - a.numberOfClicks
@@ -41,40 +43,44 @@ export const MostWatchedNews: React.FC<NewsProps> = ({ mostwatched }) => {
   };
 
   return (
-    <div className="mostwatchedpage">
-      <h1 className="mostwatched">Më të shikuarat</h1>
-      <>
-        <Carousel
-          height={200}
-          slideSize="33.333333%"
-          slideGap="md"
-          loop
-          align="start"
-          slidesToScroll={1}
-        >
-          {sortedMostWatched.map((news, index) => (
-            <>
-              <Carousel.Slide>
-                <div key={index} className="mostwatcheddiv">
-                  <Image src={news.image} className="mostwatchedimage" />
-                  <div className="mostwatchedsite">
-                    <h2 className="mostwatchedtitle">{news.title}</h2>
-                    <Button
-                      className="readMoreOnMostWatched"
-                      onClick={() => {
-                        addView(news.newsId);
-                        navigate(`/news/${news.newsId}`);
-                      }}
-                    >
-                      Read More
-                    </Button>
-                  </div>
-                </div>
-              </Carousel.Slide>
-            </>
-          ))}
-        </Carousel>
-      </>
-    </div>
+    <>
+      {data?.showMostWached && (
+        <div className="mostwatchedpage">
+          <h1 className="mostwatched">Më të shikuarat</h1>
+          <>
+            <Carousel
+              height={200}
+              slideSize="33.333333%"
+              slideGap="md"
+              loop
+              align="start"
+              slidesToScroll={1}
+            >
+              {sortedMostWatched.map((news, index) => (
+                <>
+                  <Carousel.Slide>
+                    <div key={index} className="mostwatcheddiv">
+                      <Image src={news.image} className="mostwatchedimage" />
+                      <div className="mostwatchedsite">
+                        <h2 className="mostwatchedtitle">{news.title}</h2>
+                        <Button
+                          className="readMoreOnMostWatched"
+                          onClick={() => {
+                            addView(news.newsId);
+                            navigate(`/news/${news.newsId}`);
+                          }}
+                        >
+                          Read More
+                        </Button>
+                      </div>
+                    </div>
+                  </Carousel.Slide>
+                </>
+              ))}
+            </Carousel>
+          </>
+        </div>
+      )}
+    </>
   );
 };

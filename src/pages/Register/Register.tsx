@@ -2,6 +2,7 @@ import { Button, Image, PasswordInput, Stack, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useDisclosure } from "@mantine/hooks";
 import { useNavigate } from "react-router-dom";
+import { useConfiguration } from "../../hooks/useConfiguration/useConfiguration";
 import "../Register/Register.css";
 
 export interface RegisterProps {
@@ -11,6 +12,7 @@ export interface RegisterProps {
 export const Register: React.FC<RegisterProps> = ({ mutation }) => {
   const [visible, { toggle }] = useDisclosure(false);
   const navigate = useNavigate();
+  const { data } = useConfiguration();
 
   const form = useForm({
     initialValues: {
@@ -73,7 +75,7 @@ export const Register: React.FC<RegisterProps> = ({ mutation }) => {
         <div className="registerHeader">
           <Image
             className="registerImage"
-            src="../../images/PN.png"
+            src={data?.headerLogo}
             height={60}
             width={60}
           />

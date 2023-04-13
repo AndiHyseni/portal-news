@@ -13,7 +13,7 @@ import { DatePicker } from "@mantine/dates";
 import { useForm } from "@mantine/form";
 import { AxiosError } from "axios";
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Label } from "semantic-ui-react";
 import { useCategories } from "../../hooks/useCategories/useCategories";
 import { ApiError, ErrorMessage } from "../../types/auth/ApiError";

@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { ChevronDown, Logout, User, UserPlus } from "tabler-icons-react";
 import { UserContext } from "../../contexes/UserContext";
+import { useConfiguration } from "../../hooks/useConfiguration/useConfiguration";
 import { Role } from "../../types/auth/login";
 import { Categories } from "../../types/categories/categories";
 import "../Navbar/Navbar.css";
@@ -15,6 +16,7 @@ export interface CategoriesProps {
 export const Navbar: React.FC<CategoriesProps> = ({ categories }) => {
   const [userContext] = useContext(UserContext);
   const navigate = useNavigate();
+  const { data } = useConfiguration();
   const logout = () => {
     localStorage.removeItem("jwt");
     navigate("/");
@@ -28,7 +30,7 @@ export const Navbar: React.FC<CategoriesProps> = ({ categories }) => {
   return (
     <div className="navbar">
       <Link to="/">
-        <Image src="../../images/PN.png" height={50} width={50} />
+        <Image src={data?.headerLogo} height={50} width={50} />
       </Link>
       {(!userContext.token ||
         userContext.userRole?.includes(Role.REGISTERED)) && (

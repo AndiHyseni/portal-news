@@ -72,12 +72,18 @@
   margin-bottom: 15px;
 }
 
-#mantine-r1-label {
-  font-size: 20px;
-  color: #26145c;
-}
-
 .button-container {
   align-self: end;
   margin: 10px 40px;
+}
+
+.selectLabel {
+  display: flex;
+  flex-direction: row;
+}
+
+.Shiko {
+  font-size: 20px;
+  color: #26145c;
+  margin: 5px 15px;
 }

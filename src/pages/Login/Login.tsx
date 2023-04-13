@@ -5,6 +5,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../Login/Login.css";
+import { useConfiguration } from "../../hooks/useConfiguration/useConfiguration";
 
 export interface LoginProps {
   mutation: any;
@@ -13,6 +14,7 @@ export interface LoginProps {
 export const Login: React.FC<LoginProps> = ({ mutation }) => {
   const [visible, { toggle }] = useDisclosure(false);
   const navigate = useNavigate();
+  const { data } = useConfiguration();
 
   const form = useForm({
     initialValues: {
@@ -72,7 +74,7 @@ export const Login: React.FC<LoginProps> = ({ mutation }) => {
         <div className="loginHeader">
           <Image
             className="registerImage"
-            src="../../images/PN.png"
+            src={data?.headerLogo}
             height={60}
             width={60}
           />
