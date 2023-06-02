@@ -1,3 +1,3 @@
-![image](https://github.com/AndiHyseni/portal-news/assets/59207193/bce25206-9086-4174-8013-de68297151b6)
-![image](https://github.com/AndiHyseni/portal-news/assets/59207193/7288a283-7b74-42af-8efe-e3c9e5bd909a)
-![image](https://github.com/AndiHyseni/portal-news/assets/59207193/5d74d1c9-e1df-4807-ae7f-ee80d0fb0437)
+![29](https://github.com/AndiHyseni/portal-news/assets/59207193/c9829bb3-e38a-4cdf-9eb5-23df4a7004df)
+![28](https://github.com/AndiHyseni/portal-news/assets/59207193/fd790d24-f442-4820-8836-e415d320793b)
+![34](https://github.com/AndiHyseni/portal-news/assets/59207193/3e6941e3-9018-404c-b74d-9ae3b8876d6d)
